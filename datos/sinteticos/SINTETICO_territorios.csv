@@ -1,0 +1,29 @@
+id,nombre,entidad,zona,contorno,lat,lon,poblacion,n_muestra,min_trabajo,pct_30min,pct_mas_2h,pct_cuidadoras,min_cuidado_extra,gasto_diario,pct_estres,pct_camina_mujeres,pct_camina_hombres,pct_usa_tp,ipt_bruto,ipt,sintetico
+alvaro-obregon,Álvaro Obregón,CDMX,poniente,cdmx,19.3587,-99.226,759137,262,54.5,32.5,31.3,11.5,46.0,14.2,15.7,70.1,57.8,61.8,45.2,30,SI
+azcapotzalco,Azcapotzalco,CDMX,norte,cdmx,19.4869,-99.1846,432205,149,57.8,25.0,33.3,14.3,54.6,13.6,20.5,86.3,63.2,65.9,52.7,56,SI
+benito-juarez,Benito Juárez,CDMX,centro,cdmx,19.3806,-99.1611,434153,150,42.4,44.0,21.3,10.2,40.6,14.0,13.6,56.5,63.0,46.5,36.3,0,SI
+coyoacan,Coyoacán,CDMX,sur,cdmx,19.3285,-99.1563,614447,212,49.3,32.7,23.0,10.3,42.8,13.2,12.9,72.0,57.1,58.0,39.9,12,SI
+cuajimalpa,Cuajimalpa de Morelos,CDMX,poniente,cdmx,19.357,-99.299,217686,120,46.0,43.1,27.8,10.2,38.4,14.5,17.8,58.5,45.5,41.7,38.6,8,SI
+cuauhtemoc,Cuauhtémoc,CDMX,centro,cdmx,19.433,-99.149,545884,188,44.1,34.0,24.7,15.1,40.0,13.1,12.9,67.0,60.6,60.8,43.6,25,SI
+gustavo-a-madero,Gustavo A. Madero,CDMX,norte,cdmx,19.505,-99.109,1173351,405,55.3,35.2,30.1,12.8,48.0,13.9,16.8,69.2,63.4,63.7,45.7,32,SI
+iztacalco,Iztacalco,CDMX,oriente,cdmx,19.3953,-99.097,404695,140,46.3,35.7,23.9,12.0,38.6,15.5,15.7,67.6,52.2,59.8,41.0,16,SI
+iztapalapa,Iztapalapa,CDMX,oriente,cdmx,19.355,-99.06,1835486,633,51.2,34.4,29.8,12.8,49.9,15.1,18.7,75.4,64.1,63.2,46.9,36,SI
+magdalena-contreras,La Magdalena Contreras,CDMX,poniente,cdmx,19.303,-99.242,247622,120,55.2,37.7,30.4,14.7,39.1,13.3,19.6,71.2,57.4,50.0,44.1,27,SI
+miguel-hidalgo,Miguel Hidalgo,CDMX,centro,cdmx,19.425,-99.201,414470,143,40.0,44.3,19.3,11.8,57.7,13.8,16.3,69.1,46.7,41.2,41.0,16,SI
+milpa-alta,Milpa Alta,CDMX,sur,cdmx,19.192,-99.023,152685,120,101.7,20.0,40.8,8.2,61.3,15.6,35.6,82.2,68.0,74.5,51.7,53,SI
+tlahuac,Tláhuac,CDMX,oriente,cdmx,19.286,-99.005,392313,135,76.2,25.4,43.4,17.9,53.9,16.9,20.5,80.0,62.5,73.6,61.4,86,SI
+tlalpan,Tlalpan,CDMX,sur,cdmx,19.27,-99.18,699928,241,59.9,32.5,34.0,13.5,34.7,13.7,15.9,70.2,56.4,56.5,44.6,29,SI
+venustiano-carranza,Venustiano Carranza,CDMX,oriente,cdmx,19.43,-99.095,443704,153,52.7,28.7,34.1,11.6,36.5,15.6,20.7,65.4,61.3,71.3,45.5,32,SI
+xochimilco,Xochimilco,CDMX,sur,cdmx,19.257,-99.103,442178,152,64.8,33.8,34.4,15.2,44.3,14.6,28.4,75.6,70.3,59.2,49.1,44,SI
+valle-de-chalco,Valle de Chalco Solidaridad,Edomex,oriente,c2,19.292,-98.942,391731,135,74.2,20.3,40.9,9.1,66.4,37.7,43.2,70.1,61.8,73.6,63.7,94,SI
+chalco,Chalco,Edomex,oriente,c2,19.263,-98.898,400057,138,77.9,26.7,35.1,11.7,47.4,35.2,29.0,80.0,61.8,62.2,57.9,74,SI
+ixtapaluca,Ixtapaluca,Edomex,oriente,c2,19.318,-98.882,542211,187,73.1,19.8,39.6,14.0,32.2,37.4,43.4,76.7,69.1,68.9,60.1,81,SI
+la-paz,La Paz,Edomex,oriente,c1,19.36,-98.96,304088,120,58.9,37.9,34.3,4.0,55.5,32.4,17.2,74.6,55.7,64.6,46.7,36,SI
+nezahualcoyotl,Nezahualcóyotl,Edomex,oriente,c1,19.4,-99.015,1077208,371,62.0,15.0,39.8,12.9,43.7,33.7,23.9,65.9,57.3,73.4,62.0,88,SI
+chimalhuacan,Chimalhuacán,Edomex,oriente,c1,19.421,-98.95,705193,243,71.4,26.5,43.1,14.7,43.8,36.3,31.1,69.0,59.6,78.9,63.1,92,SI
+ecatepec,Ecatepec de Morelos,Edomex,norte,c1,19.601,-99.05,1645352,567,56.9,31.4,34.6,11.6,43.0,33.2,26.3,70.0,59.5,65.4,54.5,62,SI
+tlalnepantla,Tlalnepantla de Baz,Edomex,norte,c1,19.54,-99.195,672202,232,46.8,27.6,25.7,13.6,33.3,33.9,17.9,75.0,62.1,61.3,51.7,53,SI
+naucalpan,Naucalpan de Juárez,Edomex,poniente,c1,19.478,-99.239,834434,288,47.2,24.5,28.0,11.4,42.7,33.5,19.4,63.3,53.1,65.0,53.8,60,SI
+tecamac,Tecámac,Edomex,norte,c2,19.713,-98.968,547503,189,55.8,30.9,29.2,12.4,56.2,36.1,29.5,74.7,61.2,65.2,58.2,75,SI
+tultitlan,Tultitlán,Edomex,norte,c2,19.645,-99.169,516341,178,63.8,18.6,39.0,11.0,50.4,44.5,36.2,75.3,60.0,68.2,65.5,100,SI
+cuautitlan-izcalli,Cuautitlán Izcalli,Edomex,norte,c2,19.646,-99.246,555163,191,49.2,35.0,28.6,9.9,37.4,38.7,27.2,73.6,64.0,64.0,51.3,51,SI
