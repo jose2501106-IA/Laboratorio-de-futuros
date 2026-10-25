@@ -18,7 +18,7 @@ Chilangatón · Laboratorio de Futuros · 25-oct-2026 · Complemento de [investi
 
 ## Cómo leer este documento
 
-- **IDs.** Son los de [investigacion.md](investigacion.md): S1–S7, T1–T5, E1–E9, A1–A7 y P1–P6. Aquí no se repite qué dice cada fuerza hoy; se cuenta cómo llegó ahí.
+- **IDs.** Son los de [investigacion.md](investigacion.md): S1–S7, T1–T5, E1–E9, A1–A7 y P1–P6. No son los de [senales-tendencias-fuerzas.md](senales-tendencias-fuerzas.md), que usa F, T y S con otro significado. Aquí no se repite qué dice cada fuerza hoy; se cuenta cómo llegó ahí.
 - **➕** marca interpretación o cálculo del equipo, no dato de la fuente.
 - **Confianza de las proyecciones:** 🟢 casi seguro · 🟡 probable · ⚪ posible.
 - **"Sin dato 2006"**: las notas no tienen dato de ese año; se da el más antiguo, con su año.
