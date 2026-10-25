@@ -55,11 +55,15 @@ Verificaciones web hechas durante la ronda:
 - **Ley Silla:** el decreto salió en el DOF el 19-dic-2024, con 180 días de adecuación hasta junio de 2025. La fuente acierta.
 - **Metro:** con la misma base (total anual entre 365), 2019 da unos 4.5 millones de viajes diarios, frente a 3.4 millones en 2025. Se corrigió M1.
 
-**Correcciones:** en curso, a cargo del mismo corrector de la ronda 2.
+**Correcciones:** el mismo corrector de la ronda 2 resolvió 31 de los 32 hallazgos después de cotejarlos con la página, la imagen o la estructura del PDF.
+- Quedó pendiente el B-H15, que era opcional: dar unidad propia a las notas al pie de la p. 34, que ya están en D25-34.
+- El README tiene ahora reglas para mayúsculas, texto de ilustraciones y prefijos separados.
+- Las erratas pasaron de 5 a 9 y el inventario a 138 unidades, con D25.PRE.05 para los 37 botones sin acción del índice.
+- Después de corregir: `gen_d25.py` da 40 fichas, 138 unidades y 0 fallas; `cobertura_d25.py` da 129 de 129 cifras y 968 de 968 nombres.
 
-### Ronda 4
+### Cierre
 
-Pendiente: auditores nuevos, después de las correcciones.
+El usuario pidió ajustar el trabajo al tiempo del hackatón (25-oct-2026, 13:28), así que no se abre una ronda 4 de D25. Lo que queda son hallazgos menores de estilo y de criterio, y la siguiente ronda se hará después del evento.
 
 ## P25 · Póster de García (2025)
 

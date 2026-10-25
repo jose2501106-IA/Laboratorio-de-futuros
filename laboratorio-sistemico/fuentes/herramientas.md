@@ -268,6 +268,7 @@ inv += [
  f"| D25.PRE.02 | Créditos: institución, autorxs, editoras, derechos | 2 | [README#ficha-de-la-publicación]({R}README.md#ficha-de-la-publicación) |",
  f"| D25.PRE.03 | Índice | 3-4 | [README#índice-corregido]({R}README.md#índice-corregido) |",
  f"| D25.PRE.04 | Licencia Creative Commons BY-NC-SA | 2 | [README#ficha-de-la-publicación]({R}README.md#ficha-de-la-publicación) |",
+ f"| D25.PRE.05 | Capa de formulario del índice: 37 botones sin acción; tres entradas sin botón | 3-4 | [README#índice-corregido]({R}README.md#índice-corregido) |",
  f"| D25.ENS.01 | Ensayo de Francesca Tur | 5 | [README#ensayos-de-apertura]({R}README.md#ensayos-de-apertura) |",
  f"| D25.ENS.02 | Ensayo de Karla Paniagua | 6 | [README#ensayos-de-apertura]({R}README.md#ensayos-de-apertura) |",
  f"| D25.MET | Método declarado (Dragt, cursos, bases de conocimiento, DALL-E) | 6 | [README#método-declarado]({R}README.md#método-declarado) |",
@@ -287,6 +288,8 @@ for x in fichas:
         inv.append(f"| D25.IMG.{nn} | Ilustración de la p. {nn} | {nn} | N/A: imagen generada con DALL-E, sin datos; se documenta en [README#ficha-de-la-publicación]({R}README.md#ficha-de-la-publicación) |")
 for i in range(1, 6):
     inv.append(f"| D25.ERR.0{i} | Errata {i} de la publicación | 2-4 | [README#erratas-de-la-publicación-fuera-de-las-señales]({R}README.md#erratas-de-la-publicación-fuera-de-las-señales) |")
+for i in range(6, 10):
+    inv.append(f"| D25.ERR.0{i} | Errata {i} de la publicación (ensayo de Francesca Tur) | 5 | [README#erratas-de-la-publicación-fuera-de-las-señales]({R}README.md#erratas-de-la-publicación-fuera-de-las-señales) |")
 inv.append(f"| D25.CON | Contraportada: título, miniatura de la portada y logotipo «centro.» | 47 | [README#ficha-de-la-publicación]({R}README.md#ficha-de-la-publicación) |")
 n_total = len([l for l in inv if l.startswith("| D25.")])
 n_na = len([l for l in inv if "| N/A" in l])
@@ -475,9 +478,15 @@ out.append("|---|---|---|")
 for code, d in dims.items():
     n25 = sum(1 for f in fichas if code in (f["dims"] if isinstance(f["dims"], list) else [f["dims"]]))
     out.append(f"| {L(O3, code + ' · ' + d['title'].split('·', 1)[-1].strip(), '../02-sistema-movilidad/dimensiones/' + d['file'])} | {n25} | {len(d['sen'])} |")
+m9 = next(DIMDIR.glob("M9-*.md"), None)
+if m9:
+    n25 = sum(1 for f in fichas if "M9" in (f["dims"] if isinstance(f["dims"], list) else [f["dims"]]))
+    t9 = re.search(r"^# (.+)$", m9.read_text(encoding="utf-8"), re.M).group(1).strip()
+    enlace9 = L(O3, 'M9 · ' + t9.split('·', 1)[-1].strip(), '../02-sistema-movilidad/dimensiones/' + m9.name)
+    out.append(f"| {enlace9} | {n25} | — (transversal, sin sección de señales) |")
 out.append("")
-cip = collections.Counter(s["cipher"] for d in dims.values() for s in d["sen"])
-out.append("| Tipo CIPHER (S-Mx) | Señales |")
+cip = collections.Counter(re.sub(r"\s*\(.*\)\s*$", "", s["cipher"]) for d in dims.values() for s in d["sen"])
+out.append("| Tipo CIPHER (S-Mx) | Señales |")  # los matices entre paréntesis se cuentan en su tipo
 out.append("|---|---|")
 for k, v in cip.most_common():
     out.append(f"| {k} | {v} |")

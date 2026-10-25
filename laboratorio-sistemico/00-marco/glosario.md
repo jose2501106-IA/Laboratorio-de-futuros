@@ -6,7 +6,7 @@
 |---|---|
 | Señal | Evidencia concreta de un cambio que apenas empieza: un caso, una práctica, un dato fuera de lo normal. Es una pista, no una certeza. |
 | Señal débil | Señal todavía marginal, con poca evidencia, que podría crecer o desaparecer. |
-| Tendencia | Cambio sostenido que, en un contexto dado, transforma la conducta de un grupo humano y se manifiesta de forma concreta. Se distingue de la moda pasajera (*hype*) (Dragt, citada en D25). |
+| Tendencia | Cambio sostenido que, en un contexto dado, transforma la conducta y la idiosincrasia de un grupo humano y se manifiesta de forma concreta. Se distingue de la moda pasajera (*hype*) (Dragt, citada en D25). |
 | Megatendencia | Tendencia de escala global y largo plazo (décadas) que aterriza de formas distintas en cada lugar: envejecimiento, urbanización, cambio climático, digitalización. |
 | Impulsor | Fuerza que empuja el cambio en el sistema. Se ordena con STEEP. |
 | Incertidumbre crítica | Factor de alto impacto cuya dirección no se puede predecir. Las dos más importantes suelen ser los ejes de los escenarios. |
