@@ -117,7 +117,7 @@ La **Transformación** es, en concreto, cumplir estas once metas. Los hitos de 2
 | --- | --- | --- | --- | --- | --- |
 | 1 | Ocupados que llegan a su trabajo en 30 min o menos | 34.1% | 38% | 44% | **50%** |
 | 2 | Viaje promedio al trabajo | 63 min | 61 min | 58 min | **55 min** |
-| 3 | Tarifa | La periferia paga 2.8 veces el Metro | Tarifa integrada en el corredor oriente | Tarifa integrada metropolitana | **Una sola tarifa y una tarjeta** |
+| 3 | Tarifa: pasaje de la periferia frente al Metro | La periferia paga 2.8 veces | Tarjeta y tarifa metropolitanas (2028–2030) | La periferia paga 1.5 veces o menos | **Una sola tarifa y una tarjeta (1 vez)** |
 | 4 | Muertes viales al año | 424 | 330 | 260 | **Menos de 200** |
 | 5 | Metrobús eléctrico | 168 unidades | La mitad de la flota | 100% (meta oficial 2033) | **100%** |
 | 6 | Emisiones del transporte frente a 2016 | Sin inventario reciente | −25% | −55% | **−83%** |
@@ -230,7 +230,7 @@ La propuesta para mover a la ciudad del Inercial a la Transformación está en [
 **Por qué es plausible:** se construye con piezas que ya existen o están en obra: el trolebús Chalco–Santa Martha, el Cablebús 4, 5 y 6, la meta de Metrobús 100% eléctrico en 2033 y la Ley del Sistema Público de Cuidados de 2026. Lo que falta es integrarlas, financiarlas y medirlas.
 
 **Cómo se ve, paso a paso ➕**
-- **2030:** opera la tarifa metropolitana. Las muertes viales bajan a la mitad. Funcionan el Cablebús 4, 5 y 6.
+- **2030:** opera la tarifa metropolitana. Las muertes viales bajan a 330 o menos (eran 424 en 2025). Funcionan el Cablebús 4, 5 y 6.
 - **2035:** existe una autoridad metropolitana de movilidad. Pantitlán y la Línea A tienen colectores y rutas alternas listas. El microbús es eléctrico y tiene horario.
 - **2040:** la mitad de quienes trabajan llega en 30 minutos o menos. Cada barrio tiene un centro de cuidado y una estación a 15 minutos a pie.
 
