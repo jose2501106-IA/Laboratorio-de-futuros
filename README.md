@@ -12,12 +12,13 @@ Investigación de tendencias y fuerzas motrices de la movilidad en la Ciudad de 
 
 | Archivo | Contenido |
 | --- | --- |
+| [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | Rúbrica del jurado y autoevaluación |
 | [TABLERO.md](TABLERO.md) | Coordinación: qué hace cada chat, reglas y pendientes |
 | [escenarios-2040.md](escenarios-2040.md) | Tres escenarios al 2040: Colapso, Inercial y Transformación |
 | [retrospectiva-2006-2026.md](retrospectiva-2006-2026.md) | Línea del tiempo 2006–2026: cómo llegamos aquí |
 | [senales-tendencias-fuerzas.md](senales-tendencias-fuerzas.md) | Guía fácil de fuerzas, tendencias y señales |
-| [investigacion.md](investigacion.md) | Documento completo: resumen, método, 34 fuerzas con fuente, señales débiles y comodines, matriz, dos futuros, ruta y señales de alerta |
-| [pitch.md](pitch.md) | Guion de unos tres minutos y medio y preguntas probables del jurado |
+| [investigacion.md](investigacion.md) | Documento completo: resumen, método, 34 fuerzas con fuente, señales débiles y comodines, matriz, tres escenarios, ruta y señales de alerta |
+| [pitch.md](pitch.md) | Guion de unos cuatro minutos y preguntas probables del jurado |
 | [img/](img/) | Matriz impacto × incertidumbre, cruce de escenarios y ruta 2026–2040 |
 
 ## Método

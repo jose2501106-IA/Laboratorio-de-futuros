@@ -10,6 +10,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | # | Archivo | Para qué sirve | Estado |
 | --- | --- | --- | --- |
+| 0 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | **La rúbrica del jurado** y cómo vamos en cada criterio | ✅ nuevo: léelo primero |
 | 1 | [README.md](README.md) | Puerta de entrada: tesis y hallazgos | ✅ |
 | 2 | [senales-tendencias-fuerzas.md](senales-tendencias-fuerzas.md) | Guía fácil: fuerzas, tendencias y señales | ✅ IDs unificados, con salud (SD10) |
 | 3 | [retrospectiva-2006-2026.md](retrospectiva-2006-2026.md) | Línea del tiempo 2006–2026 y escenario inercial con aritmética | ✅ unida a `main` |
@@ -36,6 +37,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 ## 3. Reglas para todos los chats
 
+0. **Todo se revisa contra [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md):** antes de subir algo, di a qué criterio le suma.
 1. **Nadie sube directo a `main`, salvo el gerente.** Cada chat trabaja en su rama `claude/<tema>` y avisa al terminar.
 2. **Antes de subir:** `git fetch origin && git rebase origin/main`.
 3. **IDs (una sola convención):**
@@ -52,6 +54,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | Pendiente | Dueño | Urgencia |
 | --- | --- | --- |
+| **Decidir la propuesta** (hay una candidata en CRITERIOS-EVALUACION.md); sin ella los criterios 1, 3 y 4 quedan cojos | Equipo | 🔴 Ya |
 | Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility) | José | 🔴 Ya |
 | Poner el nombre del equipo en la portada y el cierre del deck | Equipo | 🔴 Antes de las 14:00 |
 | Compartir el documento y el deck si hay que entregarlos | José | 🔴 Antes de las 14:00 |
