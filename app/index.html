@@ -1,0 +1,1009 @@
+<!--DEV:START--><!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!--DEV:END-->
+<title>Trama CDMX</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Trama: el transporte público de la metrópoli como un solo sistema, con una meta: devolver tiempo a quien vive lejos y cuida. Prototipo del Laboratorio de Futuros, Chilangatón 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: una barra fija con la marca, las pestañas y el aviso de datos sintéticos; cada vista es una mesa de trabajo de dos columnas (controles | lienzo) que se apila en el celular. El mapa siempre es un "centro de control" oscuro. */
+:root{
+  --papel:#F5F2EA; --tinta:#1C1E24; --tinta-2:#4A4F5A; --niebla:#B9BDC6;
+  --rosa:#D1006A; --rosa-osc:#B0005A; --rosa-claro:#FF5FA8; --teal:#0E7C74; --teal-txt:#0B6A63;
+  --bg:#F5F2EA; --fg:#1C1E24; --muted:#4A4F5A; --card:#FBFAF6; --card-2:#EAE6DC; --rule:#DAD4C6;
+  --accent:#D1006A; --accent-txt:#B0005A; --accent-tint:#F7DDE8; --on-accent:#FFFFFF;
+  --ok:#0B6A63; --ok-tint:#DDEFEC; --warn:#8A5A00; --warn-tint:#F4E6C6; --bad:#B42318; --bad-tint:#FBE3E0;
+  --m-walk:#6E7480; --m-wait:#9AA0AB; --m-micro:#C98A00; --m-rtp:#3B8A3E; --m-bici:#0E7C74; --m-auto:#5F636C; --m-otro:#8C7B6B;
+  --map-bg:#121419; --map-land:#1B1E25; --map-edge:#343944; --map-text:#D5D8DE; --map-muted:#9097A3; --map-halo:#0B0C10;
+  --f-display:"Space Grotesk","Segoe UI",system-ui,sans-serif;
+  --f-body:"Public Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --t-12:12px; --t-14:14px; --t-16:16px; --t-20:20px; --t-28:28px; --t-40:40px; --t-64:64px;
+  --r-s:6px; --r-m:12px; --r-l:18px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181D; --fg:#F2EFE7; --muted:#B9BDC6; --card:#1D2027; --card-2:#262A32; --rule:#30343D;
+    --accent:#FF5FA8; --accent-txt:#FF7DB8; --accent-tint:#3B1A2B; --on-accent:#16181D;
+    --ok:#4FC2B5; --ok-tint:#163330; --warn:#E5AE45; --warn-tint:#3A2D12; --bad:#FF7B6E; --bad-tint:#3D1E1B;
+    --m-walk:#9AA0AB; --m-wait:#6E7480; --m-micro:#E0A72A; --m-rtp:#5DB061; --m-bici:#3FB8AC; --m-auto:#8D919A; --m-otro:#B3A08E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181D; --fg:#F2EFE7; --muted:#B9BDC6; --card:#1D2027; --card-2:#262A32; --rule:#30343D;
+  --accent:#FF5FA8; --accent-txt:#FF7DB8; --accent-tint:#3B1A2B; --on-accent:#16181D;
+  --ok:#4FC2B5; --ok-tint:#163330; --warn:#E5AE45; --warn-tint:#3A2D12; --bad:#FF7B6E; --bad-tint:#3D1E1B;
+  --m-walk:#9AA0AB; --m-wait:#6E7480; --m-micro:#E0A72A; --m-rtp:#5DB061; --m-bici:#3FB8AC; --m-auto:#8D919A; --m-otro:#B3A08E;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--bg)}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.1;margin:0;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:var(--t-28)} h3{font-size:var(--t-20)}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:6px}
+.wrap{max-width:1440px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.eyebrow{font:600 var(--t-12)/1.2 var(--f-body);letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.sint{display:inline-flex;align-items:center;font:700 10.5px/1 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--warn);background:var(--warn-tint);padding:4px 6px;border-radius:4px;white-space:nowrap;vertical-align:middle}
+.proy{display:inline-flex;align-items:center;font:700 10.5px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--ok);background:var(--ok-tint);padding:4px 6px;border-radius:4px;white-space:nowrap;vertical-align:middle}
+.real{display:inline-flex;align-items:center;font:700 10.5px/1 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--rule);padding:3px 6px;border-radius:4px;white-space:nowrap;vertical-align:middle}
+
+/* Barra superior */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--rule)}
+.top-in{display:flex;align-items:center;gap:16px 24px;flex-wrap:wrap;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--fg);margin-right:auto;min-width:0}
+.brand svg{flex:none}
+.brand-name{font:700 26px/1 var(--f-display);letter-spacing:-.02em}
+.brand-tag{font-size:var(--t-14);color:var(--muted);white-space:nowrap}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{font:600 var(--t-14)/1 var(--f-display);padding:10px 14px;border-radius:999px;border:1px solid var(--rule);background:transparent;color:var(--fg)}
+.tab:hover{border-color:var(--fg)}
+.tab[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn-tour{font:600 var(--t-14)/1 var(--f-display);padding:10px 16px;border-radius:999px;border:0;background:var(--accent);color:var(--on-accent);display:inline-flex;gap:8px;align-items:center}
+.aviso{background:var(--warn-tint);color:var(--fg);font-size:13px}
+.aviso .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding-block:7px}
+.link{background:none;border:0;padding:0;color:var(--accent-txt);text-decoration:underline;text-underline-offset:3px;font-weight:600}
+
+/* Vistas */
+.view{padding-block:24px 96px}
+.view-head{display:flex;gap:8px 24px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:20px}
+.view-head p{max-width:68ch;color:var(--muted)}
+.grid{display:grid;gap:24px;align-items:start}
+.grid-dia{grid-template-columns:minmax(260px,340px) minmax(0,1fr)}
+.grid-red{grid-template-columns:minmax(0,1fr) minmax(280px,360px)}
+.grid-fut{grid-template-columns:minmax(260px,360px) minmax(0,1fr)}
+@media (max-width:960px){.grid-dia,.grid-red,.grid-fut{grid-template-columns:minmax(0,1fr)}}
+.stack{display:grid;gap:16px;min-width:0}
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:var(--r-l);padding:18px;min-width:0}
+.panel h3{margin-bottom:6px}
+
+/* Mi día */
+.personas{display:grid;gap:8px}
+.persona{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:var(--r-m);padding:10px 12px}
+.persona[aria-checked="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 18px/1 var(--f-display);background:var(--accent-tint);color:var(--accent-txt)}
+.persona b{display:block;font-family:var(--f-display);font-size:var(--t-16)}
+.persona small{color:var(--muted);font-size:13px;line-height:1.35;display:block}
+.seg-ctl{display:grid;grid-template-columns:1fr 1fr;background:var(--card-2);border-radius:999px;padding:4px;gap:4px}
+.seg-ctl button{border:0;border-radius:999px;padding:10px 12px;background:transparent;font:600 var(--t-14)/1.1 var(--f-display);color:var(--muted)}
+.seg-ctl button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:8px 0}
+.opt input{width:18px;height:18px;margin-top:2px;accent-color:var(--accent)}
+.opt span small{display:block;color:var(--muted);font-size:13px}
+.opt.off{opacity:.55}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:700px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--card);border:1px solid var(--rule);border-radius:var(--r-m);padding:14px;display:grid;gap:6px;min-width:0}
+.kpi .v{font:600 32px/1.05 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.kpi .l{font-size:13px;color:var(--muted)}
+.kpi .d{font-size:13px;font-weight:600}
+.d.mejor{color:var(--ok)} .d.peor{color:var(--bad)}
+.devuelto{background:var(--accent);color:var(--on-accent);border-radius:var(--r-l);padding:18px 20px;display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline}
+.devuelto .big{font:700 var(--t-40)/1 var(--f-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.devuelto .mes{font:600 var(--t-20)/1.2 var(--f-display)}
+.devuelto small{flex-basis:100%;font-size:13px;opacity:.9}
+.dia{display:grid;gap:10px}
+.track-wrap{overflow-x:auto}
+.track{position:relative;height:58px;border-radius:10px;background:var(--card-2);min-width:520px}
+.hour{position:absolute;top:0;bottom:0;border-left:1px dashed var(--rule)}
+.seg{position:absolute;top:9px;bottom:9px;border-radius:4px;background:var(--c);min-width:3px;border:0;padding:0}
+.seg.walk{background:repeating-linear-gradient(90deg,var(--m-walk) 0 4px,transparent 4px 7px)}
+.seg.wait{background:repeating-linear-gradient(45deg,var(--m-wait) 0 3px,transparent 3px 6px)}
+.seg.cut{background:repeating-linear-gradient(45deg,var(--bad) 0 4px,transparent 4px 8px);outline:2px solid var(--bad)}
+.seg.care::after{content:"";position:absolute;left:50%;top:-8px;width:6px;height:6px;border-radius:50%;background:var(--accent);transform:translateX(-50%)}
+.ticks{position:relative;height:18px;min-width:520px}
+.tick{position:absolute;transform:translateX(-50%);font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.leyenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted)}
+.leyenda i{display:inline-block;width:14px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle;background:var(--c)}
+.leyenda i.walk{background:repeating-linear-gradient(90deg,var(--m-walk) 0 3px,transparent 3px 5px)}
+.leyenda i.wait{background:repeating-linear-gradient(45deg,var(--m-wait) 0 2px,transparent 2px 4px)}
+.tramos{list-style:none;margin:0;padding:0}
+.tramo{display:grid;grid-template-columns:48px 12px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--rule)}
+.tramo:last-child{border-bottom:0}
+.tramo .h{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.tramo .dot{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.tramo .dot.walk{background:var(--m-walk)} .tramo .dot.wait{background:var(--m-wait)}
+.tramo .q{min-width:0}
+.tramo .q b{font-weight:600}
+.tramo .q small{display:block;color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.tramo .m{font-variant-numeric:tabular-nums;font-size:13px;text-align:right;white-space:nowrap}
+.tramo.cut .q b{color:var(--bad)}
+.chip{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.03em;padding:2px 7px;border-radius:999px;background:var(--card-2);color:var(--muted);margin-left:6px;vertical-align:1px}
+.chip.cuidado{background:var(--accent-tint);color:var(--accent-txt)}
+.alerta{border:2px solid var(--bad);background:var(--bad-tint);border-radius:var(--r-l);padding:14px 16px;display:grid;gap:8px}
+.alerta b{color:var(--bad);font-family:var(--f-display);font-size:var(--t-16)}
+.ruta-alt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.lchip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:3px 8px 3px 4px;border-radius:999px;background:var(--card);border:1px solid var(--rule)}
+.lchip i{width:16px;height:16px;border-radius:50%;background:var(--c);display:inline-block}
+.nota{font-size:13px;color:var(--muted)}
+.cuidado-resumen{font-size:var(--t-14)}
+.cuidado-resumen b{font-family:var(--f-display);font-size:var(--t-20);color:var(--accent-txt)}
+
+/* Red viva */
+.mapa{background:var(--map-bg);color:var(--map-text);border-radius:var(--r-l);overflow:hidden;position:relative;min-width:0}
+.mapa-bar{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border-bottom:1px solid var(--map-edge);align-items:center}
+.sis{font:600 12.5px/1 var(--f-body);padding:7px 10px;border-radius:999px;border:1px solid var(--map-edge);background:transparent;color:var(--map-text);display:inline-flex;gap:6px;align-items:center}
+.sis i{width:18px;height:3px;border-radius:2px;background:var(--map-text);display:inline-block}
+.sis[aria-pressed="false"]{opacity:.45;text-decoration:line-through}
+.acc{font:600 13px/1.1 var(--f-display);padding:9px 12px;border-radius:999px;border:1px solid var(--rosa-claro);background:transparent;color:var(--rosa-claro)}
+.acc[aria-pressed="true"]{background:var(--rosa-claro);color:var(--map-bg)}
+.acc.lluvia{border-color:#FF8A7A;color:#FF8A7A}
+.acc.lluvia[aria-pressed="true"]{background:#FF8A7A;color:var(--map-bg)}
+.mapa svg{display:block;width:100%;height:auto;max-height:78vh}
+.m-bg{fill:var(--map-bg)}
+.m-alc{fill:var(--map-land);stroke:var(--map-edge);stroke-width:1}
+.m-lim{fill:none;stroke:#565C68;stroke-width:1.6}
+.m-line{fill:none;stroke-linecap:round;stroke-linejoin:round;transition:opacity .25s}
+.m-case{fill:none;stroke:var(--map-halo);stroke-linecap:round;stroke-linejoin:round}
+.m-node{fill:#F2EFE7;stroke:var(--map-halo);stroke-width:1.2}
+.m-terr circle{stroke:var(--map-halo);stroke-width:1.5;cursor:pointer;transition:opacity .25s}
+.m-terr:focus{outline:none}
+.m-terr:focus-visible circle,.m-terr.sel circle{stroke:#FFFFFF;stroke-width:3.5}
+.m-lbl{font:600 17px var(--f-body);fill:var(--map-text);paint-order:stroke;stroke:var(--map-halo);stroke-width:4px;pointer-events:none}
+.m-lbl.small{font-size:14px;fill:var(--map-muted)}
+.dim .m-line{opacity:.16}
+.dim .m-line.hi{opacity:1}
+.m-cut{fill:none;stroke:#FF8A7A;stroke-width:9;stroke-linecap:round;stroke-dasharray:14 10;animation:corre 1.2s linear infinite}
+@keyframes corre{to{stroke-dashoffset:-48}}
+.m-ring{fill:none;stroke:var(--rosa-claro);stroke-width:3;animation:late 1.8s ease-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes late{0%{transform:scale(.6);opacity:1}100%{transform:scale(1.8);opacity:0}}
+.m-pin{fill:var(--rosa-claro);stroke:var(--map-halo);stroke-width:2}
+.m-pin-n{font:700 15px var(--f-display);fill:var(--map-bg);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.mapa-pie{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 12px;border-top:1px solid var(--map-edge);font-size:12px;color:var(--map-muted)}
+.escala{display:flex;align-items:center;gap:8px}
+.escala .barra{width:120px;height:8px;border-radius:4px;background:linear-gradient(90deg,#3B4250,#6C4D7A,#B33B80,#E8388E,#FF7AB8)}
+.estado{min-height:20px;font-size:12.5px;color:var(--map-text)}
+.ranking{list-style:none;margin:0;padding:0;max-height:440px;overflow-y:auto}
+.rk{display:grid;grid-template-columns:24px minmax(0,1fr) 44px;gap:10px;align-items:center;width:100%;text-align:left;padding:7px 6px;border:0;border-bottom:1px solid var(--rule);background:transparent}
+.rk:hover,.rk.sel{background:var(--card-2)}
+.rk .n{font-variant-numeric:tabular-nums;color:var(--muted);font-size:13px}
+.rk .t{min-width:0}
+.rk .t b{display:block;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk .bar{height:5px;border-radius:3px;background:var(--card-2);margin-top:4px;overflow:hidden}
+.rk .bar i{display:block;height:100%;background:var(--accent)}
+.rk .v{font:600 16px/1 var(--f-display);text-align:right;font-variant-numeric:tabular-nums}
+.ficha dl{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;margin:10px 0 0}
+.ficha dt{color:var(--muted);font-size:13.5px}
+.ficha dd{margin:0;font-weight:600;text-align:right;font-variant-numeric:tabular-nums}
+.ficha .ipt{font:700 var(--t-40)/1 var(--f-display);color:var(--accent-txt)}
+.lista-prop{margin:8px 0 0;padding-left:20px;display:grid;gap:8px;font-size:14px}
+
+/* Futuros 2040 */
+.palanca{display:grid;gap:6px;padding:10px 0}
+.palanca label{font:600 var(--t-16)/1.2 var(--f-display)}
+.palanca input[type=range]{width:100%;accent-color:var(--accent);height:28px}
+.extremos{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);gap:12px}
+.switch{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--rule)}
+.switch input{width:20px;height:20px;accent-color:var(--accent);margin-top:2px;flex:none}
+.switch b{font-family:var(--f-display)}
+.switch small{display:block;color:var(--muted);font-size:13px}
+.presets{display:flex;gap:6px;flex-wrap:wrap}
+.preset{font:600 13px/1 var(--f-display);padding:9px 12px;border-radius:999px;border:1px solid var(--rule);background:var(--card)}
+.preset.c{border-color:var(--bad);color:var(--bad)} .preset.i{border-color:var(--warn);color:var(--warn)} .preset.t{border-color:var(--ok);color:var(--ok)}
+.veredicto{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:center}
+@media (max-width:700px){.veredicto{grid-template-columns:minmax(0,1fr)}}
+.gauge svg{width:100%;height:auto;display:block}
+.g-zone{fill:none;stroke-width:22}
+.g-lbl{font:600 13px var(--f-body);fill:var(--muted)}
+.g-needle{stroke:var(--fg);stroke-width:4;stroke-linecap:round;transition:transform .35s ease}
+.g-hub{fill:var(--fg)}
+.esc-nombre{font:700 var(--t-40)/1 var(--f-display);letter-spacing:-.02em}
+.esc-nombre.c{color:var(--bad)} .esc-nombre.i{color:var(--warn)} .esc-nombre.t{color:var(--ok)}
+.esc-sub{font:500 var(--t-20)/1.25 var(--f-display);margin-top:6px}
+.variante{margin-top:10px;font-size:13.5px;color:var(--muted)}
+.rosa2040{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.rosa2040 .big{font:700 var(--t-40)/1 var(--f-display);font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.tabla-wrap{overflow-x:auto}
+table.ind{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.ind th{font:600 12px/1.2 var(--f-body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:8px 8px;border-bottom:1px solid var(--rule)}
+.ind td{padding:9px 8px;border-bottom:1px solid var(--rule);vertical-align:middle}
+.ind td.v{font:600 15px/1.2 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ind td.ok{font-size:15px;text-align:center}
+.mini{position:relative;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--bad-tint),var(--warn-tint),var(--ok-tint));min-width:90px}
+.mini i{position:absolute;top:-4px;width:4px;height:16px;border-radius:2px;background:var(--fg);transform:translateX(-50%);transition:left .3s}
+.mini u{position:absolute;top:0;bottom:0;width:2px;background:var(--warn);text-decoration:none}
+.metas{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 18px}
+@media (max-width:700px){.metas{grid-template-columns:minmax(0,1fr)}}
+.metas li{display:grid;grid-template-columns:26px 22px minmax(0,1fr);gap:6px;align-items:start;font-size:14px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.metas .n{font:600 13px/1.4 var(--f-display);color:var(--muted)}
+.metas .s{font-weight:700}
+.metas .s.si{color:var(--ok)} .metas .s.no{color:var(--bad)}
+.cuenta{font:700 var(--t-28)/1 var(--f-display)}
+
+/* Recorrido */
+.tour{position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--fg);color:var(--bg);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:0 -8px 30px rgba(0,0,0,.25)}
+.tour .wrap{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:14px}
+.tour-pasos{display:flex;gap:6px}
+.tour-pasos i{width:28px;height:6px;border-radius:3px;background:var(--muted);opacity:.5}
+.tour-pasos i.on{background:var(--accent);opacity:1}
+.tour-txt{font:600 var(--t-20)/1.3 var(--f-display);min-width:0}
+.tour button{border:1px solid var(--bg);background:transparent;color:var(--bg);border-radius:999px;padding:9px 14px;font:600 13px/1 var(--f-display)}
+@media (max-width:700px){.tour .wrap{grid-template-columns:minmax(0,1fr) auto}.tour-pasos{display:none}.tour-txt{font-size:var(--t-16)}}
+
+/* Diálogo de calibración */
+dialog{border:1px solid var(--rule);border-radius:var(--r-l);background:var(--card);color:var(--fg);padding:0;max-width:min(920px,calc(100vw - 32px));width:100%}
+dialog::backdrop{background:rgba(10,11,14,.55)}
+.dlg-in{padding:20px;display:grid;gap:12px;max-height:80vh;overflow:auto}
+.dlg-in table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+.dlg-in th,.dlg-in td{text-align:left;padding:8px;border-bottom:1px solid var(--rule);vertical-align:top}
+.dlg-in th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.dlg-in a{color:var(--accent-txt)}
+.cerrar{justify-self:end;border:1px solid var(--rule);background:var(--card-2);border-radius:999px;padding:8px 14px;font-weight:600}
+footer.pie{border-top:1px solid var(--rule);font-size:12.5px;color:var(--muted)}
+footer.pie .wrap{padding-block:16px;display:flex;flex-wrap:wrap;gap:6px 18px}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+<!--DEV:START--></head>
+<body><!--DEV:END-->
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#midia" aria-label="Trama, inicio">
+      <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <rect x="0" y="0" width="34" height="34" rx="9" fill="var(--fg)"></rect>
+        <path d="M11 6v22" stroke="var(--accent)" stroke-width="3.2" stroke-linecap="round" fill="none"></path>
+        <path d="M23 6v22" stroke="var(--accent)" stroke-width="3.2" stroke-linecap="round" fill="none"></path>
+        <path d="M6 12h3M13 12h8M25 12h3" stroke="var(--bg)" stroke-width="3.2" stroke-linecap="round" fill="none"></path>
+        <path d="M6 22h8M18 22h3M25 22h3" stroke="var(--bg)" stroke-width="3.2" stroke-linecap="round" fill="none"></path>
+      </svg>
+      <span class="brand-name">Trama</span>
+      <span class="brand-tag">la red que cuida tu tiempo</span>
+    </a>
+    <nav class="tabs" role="tablist" aria-label="Vistas de Trama">
+      <button class="tab" role="tab" id="tab-midia" aria-controls="v-midia" aria-selected="true" data-v="midia">Mi día</button>
+      <button class="tab" role="tab" id="tab-red" aria-controls="v-red" aria-selected="false" data-v="red">Red viva</button>
+      <button class="tab" role="tab" id="tab-futuros" aria-controls="v-futuros" aria-selected="false" data-v="futuros">Futuros 2040</button>
+    </nav>
+    <button class="btn-tour" id="btn-tour" type="button"><svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 1l9 5-9 5z" fill="currentColor"></path></svg>Recorrido de 30 s</button>
+  </div>
+  <div class="aviso" role="note">
+    <div class="wrap">
+      <span class="sint">Sintético</span>
+      <span>Prototipo. Las personas, los viajes y el índice son <b>datos sintéticos</b> calibrados con INEGI y la UNAM. La red de transporte es real.</span>
+      <button class="link" id="ver-cal" type="button">Ver calibración</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- ============ MI DÍA ============ -->
+<section class="view wrap" id="v-midia" role="tabpanel" aria-labelledby="tab-midia">
+  <div class="view-head">
+    <div>
+      <p class="eyebrow">Para quien viaja</p>
+      <h2>Mi día: la cadena de cuidado completa</h2>
+    </div>
+    <p>Trama planea el día entero, no un viaje suelto: dejar a la nieta, llegar al trabajo, ver a mamá y volver. Junta todos los sistemas, el caminar y la espera.</p>
+  </div>
+  <div class="grid grid-dia">
+    <div class="stack">
+      <div class="panel">
+        <p class="eyebrow" style="margin-bottom:10px">Elige a una persona <span class="sint">Sintético</span></p>
+        <div class="personas" id="personas" role="radiogroup" aria-label="Personas de ejemplo"></div>
+      </div>
+      <div class="panel stack">
+        <div class="seg-ctl" role="group" aria-label="Comparar">
+          <button type="button" id="m-hoy" aria-pressed="true">Hoy</button>
+          <button type="button" id="m-trama" aria-pressed="false">Con Trama · piloto 2030</button>
+        </div>
+        <div>
+          <label class="opt" id="o-tranq-l"><input type="checkbox" id="o-tranq"><span><b>Viaje tranquilo</b><small>Un transbordo menos aunque tarde un poco más.</small></span></label>
+          <label class="opt" id="o-acc-l"><input type="checkbox" id="o-acc"><span><b>Accesible</b><small>Sin escaleras: estaciones con elevador y rampa.</small></span></label>
+          <label class="opt"><input type="checkbox" id="o-lluvia"><span><b>Simular lluvia fuerte</b><small>Corte de la Línea A entre Pantitlán y La Paz.</small></span></label>
+        </div>
+        <p class="nota" id="o-nota"></p>
+      </div>
+    </div>
+    <div class="stack">
+      <div id="devuelto" class="devuelto" hidden aria-live="polite"></div>
+      <div class="kpis" id="kpis" aria-live="polite"></div>
+      <div id="alerta" class="alerta" hidden role="alert"></div>
+      <div class="panel dia">
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline">
+          <h3 id="dia-titulo">El día de Rosa, hoy</h3>
+          <p class="cuidado-resumen" id="cuidado-resumen"></p>
+        </div>
+        <div class="track-wrap"><div class="track" id="track" aria-label="Línea de tiempo del día"></div><div class="ticks" id="ticks" aria-hidden="true"></div></div>
+        <div class="leyenda" id="leyenda"></div>
+        <ol class="tramos" id="tramos"></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RED VIVA ============ -->
+<section class="view wrap" id="v-red" role="tabpanel" aria-labelledby="tab-red" hidden>
+  <div class="view-head">
+    <div>
+      <p class="eyebrow">Para quien gestiona</p>
+      <h2>Red viva: dónde se pierde el tiempo</h2>
+    </div>
+    <p>La red real de 48 líneas como un solo sistema. Cada círculo es una alcaldía o un municipio: el tamaño es su población y el color, su índice de pobreza de tiempo (IPT).</p>
+  </div>
+  <div class="grid grid-red">
+    <div class="mapa" id="mapa">
+      <div class="mapa-bar" id="mapa-bar">
+        <button class="acc" id="b-cuidado" type="button" aria-pressed="false">¿Dónde van los centros de cuidado?</button>
+        <button class="acc lluvia" id="b-lluvia" type="button" aria-pressed="false">Lluvia en Línea A</button>
+      </div>
+      <div id="svg-host"></div>
+      <div class="mapa-pie">
+        <span class="estado" id="estado" aria-live="polite">Toca un círculo para ver su ficha.</span>
+        <span class="escala">IPT bajo <span class="barra" aria-hidden="true"></span> alto <span class="sint">Sintético</span></span>
+        <span id="atrib"></span>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="panel" id="panel-accion" hidden></div>
+      <div class="panel ficha" id="ficha"></div>
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px"><h3>Ranking de pobreza de tiempo</h3><span class="sint">Sintético</span></div>
+        <ol class="ranking" id="ranking"></ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FUTUROS 2040 ============ -->
+<section class="view wrap" id="v-futuros" role="tabpanel" aria-labelledby="tab-futuros" hidden>
+  <div class="view-head">
+    <div>
+      <p class="eyebrow">Para quien decide</p>
+      <h2>Futuros 2040: ¿hacia dónde vamos?</h2>
+    </div>
+    <p>Mueve las dos incertidumbres críticas de nuestro análisis. Los indicadores se interpolan entre los tres escenarios: Colapso, Inercial y Transformación. Son proyecciones del equipo.</p>
+  </div>
+  <div class="grid grid-fut">
+    <div class="stack">
+      <div class="panel">
+        <div class="palanca">
+          <label for="gob">Gobernanza metropolitana</label>
+          <input type="range" id="gob" min="0" max="100" value="25" aria-describedby="gob-x">
+          <div class="extremos" id="gob-x"><span>Partida: tres gobiernos, varias tarjetas</span><span>Integrada: una autoridad, una tarifa</span></div>
+        </div>
+        <div class="palanca">
+          <label for="tra">Profundidad de la transición</label>
+          <input type="range" id="tra" min="0" max="100" value="30" aria-describedby="tra-x">
+          <div class="extremos" id="tra-x"><span>A medias: solo electrificar</span><span>A fondo: cambio modal y adaptación</span></div>
+        </div>
+        <label class="switch"><input type="checkbox" id="golpes"><span><b>Golpes externos</b><small>Sequía, hundimiento, sismo y crisis fiscal encadenados.</small></span></label>
+        <label class="switch"><input type="checkbox" id="con-trama"><span><b>Trama en marcha desde 2027</b><small>Una métrica común y avisos tempranos: empuja las dos palancas y amortigua los golpes. <span class="proy">➕ Supuesto del equipo</span></small></span></label>
+        <div class="presets" style="padding-top:10px">
+          <button class="preset c" type="button" data-p="colapso">Colapso</button>
+          <button class="preset i" type="button" data-p="inercial">Inercial</button>
+          <button class="preset t" type="button" data-p="transformacion">Transformación</button>
+        </div>
+      </div>
+      <div class="panel">
+        <p class="eyebrow">El día de Rosa en 2040 <span class="proy">➕ Proyección</span></p>
+        <div class="rosa2040" style="margin-top:8px"><span class="big" id="rosa-min">4 h 30 min</span><span id="rosa-txt" class="muted">moviéndose al día</span></div>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="panel veredicto">
+        <div class="gauge" id="gauge"></div>
+        <div aria-live="polite">
+          <p class="eyebrow">La metrópoli va hacia</p>
+          <p class="esc-nombre i" id="esc-nombre">Inercial</p>
+          <p class="esc-sub" id="esc-sub">La metrópoli de las cuatro horas</p>
+          <p class="variante" id="esc-var"></p>
+        </div>
+      </div>
+      <div class="panel">
+        <div style="display:flex;justify-content:space-between;gap:12px;align-items:baseline;flex-wrap:wrap;margin-bottom:8px">
+          <h3>Las metas son</h3>
+          <span><span class="cuenta" id="metas-n">0</span> <span class="muted">de 11 se cumplen</span></span>
+        </div>
+        <ul class="metas" id="metas"></ul>
+      </div>
+      <div class="panel">
+        <h3 style="margin-bottom:8px">Indicadores en 2040</h3>
+        <div class="tabla-wrap"><table class="ind" id="ind"></table></div>
+        <p class="nota" style="margin-top:8px">Hoy: dato real con fuente en escenarios-2040.md. 2040: proyección del equipo ➕, interpolada entre los tres escenarios. La barra va de Colapso (izquierda) a Transformación (derecha); la marca ámbar es el Inercial.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="pie">
+  <div class="wrap">
+    <span>Trama · Laboratorio de Futuros · Chilangatón CDMX 2026</span>
+    <span>Red: © colaboradores de OpenStreetMap (ODbL) y GTFS de SEMOVI vía Mobility Database</span>
+    <span>Sintéticos: generados con semilla fija y calibrados con INEGI (EOD 2017, Intercensal 2025) y UNAM</span>
+  </div>
+</footer>
+
+<div class="tour" id="tour" hidden>
+  <div class="wrap">
+    <div class="tour-pasos" id="tour-pasos" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p class="tour-txt" id="tour-txt" aria-live="polite"></p>
+    <button type="button" id="tour-salir">Salir</button>
+  </div>
+</div>
+
+<dialog id="dlg-cal" aria-labelledby="dlg-t">
+  <div class="dlg-in">
+    <h3 id="dlg-t">Calibración de los datos sintéticos</h3>
+    <p class="muted" id="dlg-aviso"></p>
+    <div class="tabla-wrap"><table id="cal"></table></div>
+    <button class="cerrar" type="button" id="dlg-cerrar">Cerrar</button>
+  </div>
+</dialog>
+
+<script src="data/red.js"></script>
+<script src="data/sintetico.js"></script>
+<script>
+(function(){
+'use strict';
+/* ---------- Datos ---------- */
+var FALLBACK = {
+  aviso: "DATOS SINTÉTICOS de respaldo (mínimos). La versión completa sale de scripts/generar_sinteticos.py.",
+  semilla: 2040,
+  territorios: [
+    {id:"09007",nombre:"Iztapalapa",entidad:"CDMX",zona:"oriente",lat:19.355,lon:-99.06,poblacion:1835486,ipt:71,min_trabajo:68,pct_30min:27,pct_mas_2h:31,pct_cuidadoras:29,min_cuidado_extra:38,gasto_diario:46,pct_estres:22,pct_camina_mujeres:73,pct_camina_hombres:61,sintetico:true},
+    {id:"15122",nombre:"Valle de Chalco Solidaridad",entidad:"Edomex",zona:"oriente",lat:19.29,lon:-98.94,poblacion:391731,ipt:86,min_trabajo:92,pct_30min:16,pct_mas_2h:47,pct_cuidadoras:33,min_cuidado_extra:44,gasto_diario:78,pct_estres:35,pct_camina_mujeres:76,pct_camina_hombres:63,sintetico:true},
+    {id:"15058",nombre:"Nezahualcóyotl",entidad:"Edomex",zona:"oriente",lat:19.40,lon:-99.015,poblacion:1077208,ipt:74,min_trabajo:79,pct_30min:21,pct_mas_2h:38,pct_cuidadoras:30,min_cuidado_extra:40,gasto_diario:64,pct_estres:30,pct_camina_mujeres:74,pct_camina_hombres:62,sintetico:true},
+    {id:"15033",nombre:"Ecatepec de Morelos",entidad:"Edomex",zona:"norte",lat:19.60,lon:-99.05,poblacion:1645352,ipt:78,min_trabajo:83,pct_30min:19,pct_mas_2h:41,pct_cuidadoras:30,min_cuidado_extra:41,gasto_diario:70,pct_estres:33,pct_camina_mujeres:75,pct_camina_hombres:62,sintetico:true},
+    {id:"09015",nombre:"Cuauhtémoc",entidad:"CDMX",zona:"centro",lat:19.433,lon:-99.15,poblacion:545884,ipt:24,min_trabajo:38,pct_30min:52,pct_mas_2h:8,pct_cuidadoras:21,min_cuidado_extra:22,gasto_diario:24,pct_estres:15,pct_camina_mujeres:70,pct_camina_hombres:60,sintetico:true},
+    {id:"09016",nombre:"Miguel Hidalgo",entidad:"CDMX",zona:"poniente",lat:19.43,lon:-99.20,poblacion:414470,ipt:20,min_trabajo:36,pct_30min:55,pct_mas_2h:7,pct_cuidadoras:19,min_cuidado_extra:20,gasto_diario:26,pct_estres:14,pct_camina_mujeres:68,pct_camina_hombres:58,sintetico:true}
+  ],
+  personajes: [{
+    id:"rosa",nombre:"Rosa",edad:54,territorio:"Valle de Chalco Solidaridad",
+    descripcion:"Limpia oficinas en Polanco. Cuida a su mamá y a su nieta de 6 años.",
+    dias:{
+      hoy:{tramos:[
+        {"sale": "04:40", "de": "Casa", "a": "Casa de la vecina", "modo": "caminar", "min": 6, "costo": 0, "proposito": "cuidado"},
+        {"sale": "04:46", "de": "Casa de la vecina", "a": "Base de combis", "modo": "caminar", "min": 7, "costo": 0, "proposito": "trabajo"},
+        {"sale": "04:53", "de": "Base de combis", "a": "Base de combis", "modo": "espera", "min": 6, "costo": 0, "proposito": "trabajo"},
+        {"sale": "04:59", "de": "Valle de Chalco", "a": "Metro La Paz", "modo": "combi", "min": 27, "costo": 14, "proposito": "trabajo"},
+        {"sale": "05:26", "de": "La Paz", "a": "Pantitlán", "modo": "metro", "linea": "A", "min": 22, "costo": 5, "proposito": "trabajo"},
+        {"sale": "05:48", "de": "Pantitlán", "a": "Tacubaya", "modo": "metro", "linea": "9", "min": 26, "costo": 0, "proposito": "trabajo"},
+        {"sale": "06:14", "de": "Tacubaya", "a": "Polanco", "modo": "metro", "linea": "7", "min": 9, "costo": 0, "proposito": "trabajo"},
+        {"sale": "06:23", "de": "Metro Polanco", "a": "Oficinas", "modo": "caminar", "min": 12, "costo": 0, "proposito": "trabajo"},
+        {"sale": "15:30", "de": "Oficinas", "a": "Metro Polanco", "modo": "caminar", "min": 12, "costo": 0, "proposito": "regreso"},
+        {"sale": "15:42", "de": "Polanco", "a": "Pantitlán", "modo": "metro", "linea": "7", "min": 38, "costo": 5, "proposito": "regreso"},
+        {"sale": "16:20", "de": "Pantitlán", "a": "La Paz", "modo": "metro", "linea": "A", "min": 22, "costo": 0, "proposito": "regreso"},
+        {"sale": "16:42", "de": "Metro La Paz", "a": "Base de combis", "modo": "espera", "min": 7, "costo": 0, "proposito": "regreso"},
+        {"sale": "16:49", "de": "La Paz", "a": "Casa de su mamá", "modo": "combi", "min": 25, "costo": 14, "proposito": "cuidado"},
+        {"sale": "18:40", "de": "Casa de su mamá", "a": "Casa", "modo": "combi", "min": 11, "costo": 14, "proposito": "cuidado"}
+      ],total_min:230,total_costo:52,transbordos:8,estres:7.4},
+      trama_2030:{tramos:[
+        {"sale": "05:10", "de": "Casa", "a": "Centro de cuidado junto a la estación", "modo": "caminar", "min": 8, "costo": 0, "proposito": "cuidado"},
+        {"sale": "05:18", "de": "Valle de Chalco", "a": "Santa Marta", "modo": "trolebus", "linea": "11", "min": 30, "costo": 14, "proposito": "trabajo"},
+        {"sale": "05:48", "de": "Santa Marta", "a": "Pantitlán", "modo": "metro", "linea": "A", "min": 14, "costo": 0, "proposito": "trabajo"},
+        {"sale": "06:02", "de": "Pantitlán", "a": "Tacubaya", "modo": "metro", "linea": "9", "min": 26, "costo": 0, "proposito": "trabajo"},
+        {"sale": "06:28", "de": "Tacubaya", "a": "Polanco", "modo": "metro", "linea": "7", "min": 9, "costo": 0, "proposito": "trabajo"},
+        {"sale": "06:37", "de": "Metro Polanco", "a": "Oficinas", "modo": "caminar", "min": 8, "costo": 0, "proposito": "trabajo"},
+        {"sale": "15:30", "de": "Oficinas", "a": "Pantitlán", "modo": "metro", "linea": "7", "min": 48, "costo": 0, "proposito": "regreso"},
+        {"sale": "16:18", "de": "Pantitlán", "a": "Santa Marta", "modo": "metro", "linea": "A", "min": 14, "costo": 0, "proposito": "regreso"},
+        {"sale": "16:32", "de": "Santa Marta", "a": "Casa de su mamá", "modo": "trolebus", "linea": "11", "min": 18, "costo": 0, "proposito": "cuidado"},
+        {"sale": "18:20", "de": "Casa de su mamá", "a": "Casa", "modo": "combi", "min": 10, "costo": 14, "proposito": "cuidado"}
+      ],total_min:185,total_costo:28,transbordos:5,estres:5.1},
+      inercial_2040:{total_min:270,nota:"Cuatro horas y media moviéndose."},
+      transformacion_2040:{total_min:120,nota:"Dos horas; le queda la tarde."},
+      colapso_2040:{total_min:null,nota:"Deja su trabajo: Pantitlán lleva meses cerrado."}
+    }
+  }],
+  calibracion: []
+};
+var RED = window.RED || {lineas:[],estaciones:[],nodos:[],alcaldias:[],limite:[],atribucion:""};
+var S = window.SINTETICO || FALLBACK;
+if(!S.territorios || !S.territorios.length) S.territorios = FALLBACK.territorios;
+if(!S.personajes || !S.personajes.length) S.personajes = FALLBACK.personajes;
+
+/* ---------- Utilidades ---------- */
+function $(s,r){return (r||document).querySelector(s);}
+function $$(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function norm(s){return String(s==null?'':s).normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();}
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function fmtMin(m){ if(m==null||isNaN(m)) return '—'; m=Math.round(m); var h=Math.floor(m/60), r=m%60; return h? (h+' h'+(r?' '+r+' min':'')) : (r+' min'); }
+function fmtHM(m){ m=Math.round(m); var h=Math.floor(m/60)%24, r=m%60; return (h<10?'0':'')+h+':'+(r<10?'0':'')+r; }
+function fmtInt(n){ return Math.round(n).toLocaleString('es-MX'); }
+function pesos(n){ return n==null?'—':'$'+Math.round(n); }
+function pct(v){ if(v==null||isNaN(v)) return null; return v<=1? v*100 : v; }
+function fpct(v){ var p=pct(v); return p==null?'—':(Math.round(p*10)/10)+'%'; }
+function hm(s){ if(typeof s==='number') return s; var m=/(\d{1,2}):(\d{2})/.exec(s||''); return m? (+m[1])*60+(+m[2]) : null; }
+function dkm(lon1,lat1,lon2,lat2){ var kx=111.32*Math.cos(19.4*Math.PI/180); return Math.hypot((lon1-lon2)*kx,(lat1-lat2)*110.54); }
+var SINT = '<span class="sint">Sintético</span>';
+function nombreTerr(x){ var ts=S.territorios||[]; for(var i=0;i<ts.length;i++){ if(String(ts[i].id)===String(x)||norm(ts[i].nombre)===norm(x)) return ts[i].nombre; } return x||''; }
+function rosa(){ for(var i=0;i<S.personajes.length;i++){ if(norm(S.personajes[i].nombre)==='rosa'||norm(S.personajes[i].id)==='rosa') return S.personajes[i]; } return S.personajes[0]||{}; }
+var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------- Modos y líneas ---------- */
+var MODO_N = {caminar:'Camina',espera:'Espera',combi:'Combi',microbus:'Microbús',concesionado:'Corredor concesionado',rtp:'RTP',bici:'Bici',ecobici:'Ecobici',auto:'Auto',taxi:'Taxi',moto:'Moto',mototaxi:'Mototaxi',metro:'Metro',metrobus:'Metrobús',trolebus:'Trolebús',cablebus:'Cablebús',tren_ligero:'Tren Ligero',mexibus:'Mexibús',mexicable:'Mexicable',suburbano:'Tren Suburbano',tren:'Tren',insurgente:'El Insurgente'};
+var MODO_C = {caminar:'var(--m-walk)',espera:'var(--m-wait)',combi:'var(--m-micro)',microbus:'var(--m-micro)',concesionado:'var(--m-micro)',rtp:'var(--m-rtp)',bici:'var(--m-bici)',ecobici:'var(--m-bici)',auto:'var(--m-auto)',taxi:'var(--m-auto)',moto:'var(--m-auto)',mototaxi:'var(--m-auto)',metro:'#981D97',metrobus:'#D40D0D',trolebus:'#1A5FB4',cablebus:'#4EC3E0',tren_ligero:'#0554BA',mexibus:'#8E24AA',mexicable:'#6D4C41',suburbano:'#BF1600',tren:'#BF1600',insurgente:'#83332E'};
+function modoKey(m){
+  var k=norm(m).replace(/[\s-]+/g,'_');
+  if(k.indexOf('tren_lig')===0||k==='tl') return 'tren_ligero';
+  if(k.indexOf('trole')>=0) return 'trolebus';
+  if(k.indexOf('metrobus')>=0||k==='mb') return 'metrobus';
+  if(k.indexOf('mexicable')>=0) return 'mexicable';
+  if(k.indexOf('cable')>=0) return 'cablebus';
+  if(k.indexOf('mexib')>=0) return 'mexibus';
+  if(k.indexOf('subur')>=0) return 'suburbano';
+  if(k.indexOf('insurg')>=0||k.indexOf('interurb')>=0) return 'insurgente';
+  if(k.indexOf('metro')===0) return 'metro';
+  if(k.indexOf('camin')>=0||k==='pie'||k==='a_pie') return 'caminar';
+  if(k.indexOf('esper')>=0||k.indexOf('transb')>=0) return 'espera';
+  if(k.indexOf('combi')>=0||k.indexOf('vagoneta')>=0) return 'combi';
+  if(k.indexOf('micro')>=0||k.indexOf('pesero')>=0||k.indexOf('camion')>=0||k.indexOf('colectivo')>=0) return 'microbus';
+  if(k.indexOf('concesion')>=0||k==='cc') return 'concesionado';
+  if(k.indexOf('ecobici')>=0) return 'ecobici';
+  if(k.indexOf('bici')>=0) return 'bici';
+  return k;
+}
+function rutaKey(l){ var n=norm(l); if(n.indexOf('chalco')>=0||n.indexOf('santa mart')>=0) return '11'; return n.replace(/^linea\s*/,'').replace(/^l\s*(?=\w)/,'').toUpperCase().trim(); }
+function lineaDe(t){
+  if(!t.linea) return null;
+  var k=modoKey(t.modo), sis = (k==='suburbano'||k==='insurgente')?'tren':k, r=rutaKey(t.linea);
+  for(var i=0;i<RED.lineas.length;i++){ var L=RED.lineas[i]; if(L.sistema===sis && String(L.ruta).toUpperCase()===r) return L; }
+  return null;
+}
+function lineaPorId(id){ for(var i=0;i<RED.lineas.length;i++) if(RED.lineas[i].id===id) return RED.lineas[i]; return null; }
+function colorTramo(t){ var L=lineaDe(t); if(L) return L.color; var k=modoKey(t.modo); return MODO_C[k]||'var(--m-otro)'; }
+function nombreTramo(t){
+  var k=modoKey(t.modo), n=MODO_N[k]||t.modo||'Tramo';
+  if(t.linea){ var l=String(t.linea);
+    if(/l[ií]nea/i.test(l)) n += ' '+l;
+    else if(l.length<=3) n += ' Línea '+l;
+    else n = norm(l).indexOf(norm(n))===0 ? l : n+' · '+l; }
+  return n;
+}
+function clsTramo(t){ var k=modoKey(t.modo); return k==='caminar'?'walk':(k==='espera'?'wait':''); }
+function esCuidado(t){ return norm(t.proposito).indexOf('cuid')>=0; }
+function usaLineaA(t){ return modoKey(t.modo)==='metro' && rutaKey(t.linea||'')==='A'; }
+var NIVELES=['bajo','medio','alto','muy alto'];
+function bajaNivel(e){ var i=NIVELES.indexOf(norm(e)); return i>0? NIVELES[i-1] : e; }
+function fmtEstres(e){ if(e==null||e==='') return '—'; if(typeof e==='string') return e.charAt(0).toUpperCase()+e.slice(1); if(e<=1) return Math.round(e*100)+'%'; if(e<=10) return (Math.round(e*10)/10)+' de 10'; return Math.round(e)+' de 100'; }
+
+/* ---------- Navegación ---------- */
+var VISTAS=['midia','red','futuros'];
+function show(v){
+  if(VISTAS.indexOf(v)<0) v='midia';
+  VISTAS.forEach(function(x){ $('#v-'+x).hidden = (x!==v); var b=$('#tab-'+x); b.setAttribute('aria-selected', x===v?'true':'false'); b.tabIndex = x===v?0:-1; });
+  try{ if(location.hash!=='#'+v) history.replaceState(null,'','#'+v); }catch(e){}
+  window.scrollTo(0,0);
+}
+$$('.tab').forEach(function(b){
+  b.addEventListener('click',function(){ show(b.dataset.v); });
+  b.addEventListener('keydown',function(e){ var i=VISTAS.indexOf(b.dataset.v); if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ var n=VISTAS[(i+(e.key==='ArrowRight'?1:2))%3]; show(n); $('#tab-'+n).focus(); e.preventDefault(); } });
+});
+
+/* =================================================================
+   MI DÍA
+   ================================================================= */
+var st = {p:0, modo:'hoy', tranq:false, acc:false, lluvia:false};
+function renderPersonas(){
+  var h='';
+  S.personajes.forEach(function(p,i){
+    h+='<button type="button" class="persona" role="radio" aria-checked="'+(i===st.p)+'" data-i="'+i+'"><span class="avatar" aria-hidden="true">'+esc((p.nombre||'?').charAt(0))+'</span><span><b>'+esc(p.nombre)+(p.edad?', '+esc(p.edad):'')+'</b><small>'+esc(nombreTerr(p.territorio))+'</small><small>'+esc(p.descripcion||'')+'</small></span></button>';
+  });
+  $('#personas').innerHTML=h;
+  $$('#personas .persona').forEach(function(b){ b.addEventListener('click',function(){ st.p=+b.dataset.i; renderPersonas(); renderDia(); }); });
+}
+function planActual(){
+  var p=S.personajes[st.p]||S.personajes[0], d=p.dias||{};
+  var base = st.modo==='trama' ? (d.trama_2030||d.hoy) : d.hoy;
+  base = base || {tramos:[],total_min:0,total_costo:0,transbordos:0,estres:null};
+  var tr = (base.tramos||[]).map(function(t){ var c={}; for(var k in t) c[k]=t[k]; return c; });
+  var tot = base.total_min!=null? base.total_min : tr.reduce(function(a,t){return a+(+t.min||0);},0);
+  var cost = base.total_costo!=null? base.total_costo : tr.reduce(function(a,t){return a+(+t.costo||0);},0);
+  var transb = base.transbordos!=null? base.transbordos : Math.max(0, tr.filter(function(t){var k=modoKey(t.modo);return k!=='caminar'&&k!=='espera';}).length-1);
+  var estres = base.estres;
+  var notas=[];
+  if(st.modo==='trama'){
+    if(st.tranq && transb>1){ transb-=1; tot+=6; if(typeof estres==='number') estres=estres*0.82; else if(typeof estres==='string') estres=bajaNivel(estres); notas.push('Viaje tranquilo: un transbordo menos, +6 min.'); }
+    if(st.acc){ tot+=5; notas.push('Accesible: estaciones con elevador y rampa, +5 min.'); }
+  }
+  var lluviaInfo=null;
+  if(st.lluvia){
+    var afect = tr.filter(usaLineaA);
+    if(afect.length){
+      if(st.modo==='trama'){
+        afect.forEach(function(t){ t.alt=true; });
+        tot+=15; lluviaInfo={toca:true, extra:15};
+      } else {
+        afect.forEach(function(t){ t.cut=true; });
+        tot+=50; lluviaInfo={toca:true, extra:50};
+      }
+    } else lluviaInfo={toca:false, extra:0};
+  }
+  return {p:p, d:d, tramos:tr, total_min:tot, total_costo:cost, transbordos:transb, estres:estres, notas:notas, lluvia:lluviaInfo};
+}
+function renderDia(){
+  var A=planActual(), p=A.p;
+  // Comparación contra hoy
+  var hoy=(p.dias&&p.dias.hoy)||{}, tram=(p.dias&&p.dias.trama_2030)||null;
+  $('#m-hoy').setAttribute('aria-pressed', st.modo==='hoy');
+  $('#m-trama').setAttribute('aria-pressed', st.modo==='trama');
+  ['o-tranq','o-acc'].forEach(function(id){ var on=st.modo==='trama'; $('#'+id).disabled=!on; $('#'+id+'-l').classList.toggle('off',!on); });
+  $('#o-nota').textContent = st.modo==='hoy' ? 'Las opciones de viaje tranquilo y accesible se activan con Trama: hoy ninguna app junta todos los sistemas.' : A.notas.join(' ');
+  $('#dia-titulo').textContent = 'El día de '+(p.nombre||'')+(st.modo==='hoy'?', hoy':', con Trama (piloto 2030)');
+  // Tiempo devuelto
+  var dv=$('#devuelto');
+  if(st.modo==='trama' && hoy.total_min!=null){
+    var hoyTot = hoy.total_min + ((A.lluvia&&A.lluvia.toca)?50:0);
+    var diff = hoyTot - A.total_min;
+    var mes = diff*20/60;
+    dv.hidden=false;
+    dv.innerHTML = '<span class="big">'+(diff>=0?'−':'+')+fmtMin(Math.abs(diff))+' al día</span><span class="mes">≈ '+(Math.round(mes*10)/10).toLocaleString('es-MX')+' h al mes devueltas a '+esc(p.nombre)+'</span><small>Contando 20 días hábiles. Cálculo sobre datos sintéticos calibrados.</small>';
+  } else dv.hidden=true;
+  // KPIs
+  function delta(cur,ref,menosEsMejor,fmt){ if(st.modo!=='trama'||ref==null||cur==null||typeof cur!=='number') return ''; var d=cur-ref; if(Math.abs(d)<0.05) return '<span class="d">igual que hoy</span>'; var mejor = menosEsMejor? d<0 : d>0; return '<span class="d '+(mejor?'mejor':'peor')+'">'+(d<0?'−':'+')+fmt(Math.abs(d))+' contra hoy</span>'; }
+  var hoyTotK = hoy.total_min!=null? hoy.total_min + ((A.lluvia&&A.lluvia.toca)?50:0) : null;
+  var k='';
+  k+='<div class="kpi"><span class="l">Tiempo moviéndose</span><span class="v">'+fmtMin(A.total_min)+'</span>'+delta(A.total_min,hoyTotK,true,fmtMin)+SINT+'</div>';
+  k+='<div class="kpi"><span class="l">Gasto del día</span><span class="v">'+pesos(A.total_costo)+'</span>'+delta(A.total_costo,hoy.total_costo,true,pesos)+SINT+'</div>';
+  k+='<div class="kpi"><span class="l">Transbordos</span><span class="v">'+(A.transbordos==null?'—':A.transbordos)+'</span>'+delta(A.transbordos,hoy.transbordos,true,function(x){return String(Math.round(x));})+SINT+'</div>';
+  k+='<div class="kpi"><span class="l">Estrés del viaje</span><span class="v">'+fmtEstres(A.estres)+'</span>'+delta(typeof A.estres==='number'?A.estres:null, typeof hoy.estres==='number'?hoy.estres:null,true,function(x){return fmtEstres(x).replace(' de 10','');})+SINT+'</div>';
+  $('#kpis').innerHTML=k;
+  // Alerta
+  var al=$('#alerta');
+  if(st.lluvia){
+    al.hidden=false;
+    var alt = ['trolebus-11','cablebus-2','metro-8','metro-9','metro-7'].map(lineaPorId).filter(Boolean);
+    var chips = alt.map(function(L){ return '<span class="lchip"><i style="--c:'+esc(L.color)+'"></i>'+esc(L.sistema_nombre+' '+(L.ruta&&L.sistema!=='tren'?L.ruta:L.nombre))+'</span>'; }).join('<span aria-hidden="true">→</span>');
+    var txt;
+    if(!A.lluvia.toca) txt='Tu cadena de hoy no usa la Línea A. Trama te avisaría igual de los transbordos saturados.';
+    else if(st.modo==='trama') txt='Trama avisa 30 minutos antes de salir y reparte el viaje. Llega 15 minutos más tarde, no una hora.';
+    else txt='Sin aviso: se entera en el andén, sale a buscar combi y espera. Pierde unos 50 minutos más.';
+    al.innerHTML='<b>Lluvia fuerte: Línea A suspendida entre Pantitlán y La Paz</b><p>'+esc(txt)+' '+SINT+'</p>'+(st.modo==='trama'&&A.lluvia.toca?'<div class="ruta-alt"><span class="nota">Ruta alterna:</span>'+chips+'</div>':'')+'<p class="nota">Simulación. Dato real: en 2025 la lluvia cortó la Línea A al menos 14 veces (Infobae).</p>';
+  } else { al.hidden=true; al.innerHTML=''; }
+  // Línea de tiempo
+  var tr=A.tramos, t0=null, ends=[];
+  var cur=null;
+  tr.forEach(function(t){ var s=hm(t.sale); if(s==null) s=cur==null?300:cur; t._s=s; t._e=s+(+t.min||0); cur=t._e; if(t0==null||s<t0) t0=s; ends.push(t._e); });
+  var a = Math.max(0, Math.floor(((t0==null?300:t0)-20)/60)*60), b = Math.min(24*60, Math.ceil(((ends.length?Math.max.apply(null,ends):1200)+20)/60)*60);
+  if(b-a<360) b=a+360;
+  var span=b-a, th='', tk='';
+  for(var h=a; h<=b; h+=60){ var x=(h-a)/span*100; th+='<span class="hour" style="left:'+x+'%"></span>'; if(((h/60)%2===0) || span<=600) tk+='<span class="tick" style="left:'+x+'%">'+fmtHM(h)+'</span>'; }
+  tr.forEach(function(t,i){
+    var x=(t._s-a)/span*100, w=Math.max(0.35,(+t.min||0)/span*100), cls='seg '+clsTramo(t)+(t.cut?' cut':'')+(esCuidado(t)?' care':'');
+    var lbl = fmtHM(t._s)+' · '+nombreTramo(t)+' · '+(t.de||'')+' → '+(t.a||'')+' · '+fmtMin(+t.min||0);
+    th+='<button type="button" class="'+cls+'" style="left:'+x+'%;width:'+w+'%;--c:'+esc(colorTramo(t))+'" title="'+esc(lbl)+'" aria-label="'+esc(lbl)+'" data-i="'+i+'"></button>';
+  });
+  $('#track').innerHTML=th; $('#ticks').innerHTML=tk;
+  // Leyenda
+  var vistos={}, lg='';
+  tr.forEach(function(t){ var n=nombreTramo(t), c=clsTramo(t); if(vistos[n]) return; vistos[n]=1; lg+='<span><i class="'+c+'" style="--c:'+esc(colorTramo(t))+'"></i>'+esc(n)+'</span>'; });
+  lg+='<span><i style="--c:var(--accent);width:8px;height:8px;border-radius:50%"></i>Tramo de cuidado</span>';
+  $('#leyenda').innerHTML=lg;
+  // Lista de tramos
+  var li='';
+  tr.forEach(function(t){
+    var nom = t.alt? 'Ruta alterna por lluvia: Cablebús 2 hasta Constitución de 1917 y Metro Línea 8 hasta Chabacano' : nombreTramo(t);
+    li+='<li class="tramo'+(t.cut?' cut':'')+'"><span class="h">'+fmtHM(t._s)+'</span><span class="dot '+clsTramo(t)+'" style="--c:'+esc(colorTramo(t))+'"></span><span class="q"><b>'+esc(t.cut?'Suspendido: '+nombreTramo(t):nom)+'</b>'+(esCuidado(t)?'<span class="chip cuidado">cuidado</span>':(t.proposito?'<span class="chip">'+esc(t.proposito)+'</span>':''))+'<small>'+esc((t.de||'')+' → '+(t.a||''))+'</small></span><span class="m">'+fmtMin(+t.min||0)+(t.costo?' · '+pesos(t.costo):'')+'</span></li>';
+  });
+  $('#tramos').innerHTML = li || '<li class="tramo"><span></span><span></span><span class="q">Sin tramos detallados para este escenario.</span><span></span></li>';
+  // Resumen de cuidado
+  var cm = tr.filter(esCuidado).reduce(function(s,t){return s+(+t.min||0);},0);
+  $('#cuidado-resumen').innerHTML = cm? 'De '+fmtMin(A.total_min)+', <b>'+fmtMin(cm)+'</b> son viajes de cuidado '+SINT : '';
+}
+$('#m-hoy').addEventListener('click',function(){ st.modo='hoy'; renderDia(); });
+$('#m-trama').addEventListener('click',function(){ st.modo='trama'; renderDia(); });
+$('#o-tranq').addEventListener('change',function(e){ st.tranq=e.target.checked; renderDia(); });
+$('#o-acc').addEventListener('change',function(e){ st.acc=e.target.checked; renderDia(); });
+$('#o-lluvia').addEventListener('change',function(e){ st.lluvia=e.target.checked; renderDia(); });
+
+/* =================================================================
+   RED VIVA
+   ================================================================= */
+var BB=[-99.36,19.09,-98.85,19.73], KX=Math.cos(19.4*Math.PI/180), W=1000, SC=W/((BB[2]-BB[0])*KX), H=Math.round((BB[3]-BB[1])*SC);
+function P(lon,lat){ return [((lon-BB[0])*KX*SC), ((BB[3]-lat)*SC)]; }
+function pathLine(coords){ var d=''; coords.forEach(function(part){ part.forEach(function(q,i){ var p=P(q[0],q[1]); d+=(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1); }); }); return d; }
+function pathPoly(rings){ return rings.map(function(r){ return r.map(function(q,i){ var p=P(q[0],q[1]); return (i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1); }).join('')+'Z'; }).join(''); }
+function aclara(hex,f){ var m=/^#?([0-9a-f]{6})$/i.exec(hex||''); if(!m) return hex||'#888'; var n=parseInt(m[1],16), r=n>>16, g=(n>>8)&255, b=n&255; r=Math.round(r+(255-r)*f); g=Math.round(g+(255-g)*f); b=Math.round(b+(255-b)*f); return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1); }
+var ANCHO={metro:4.6,metrobus:3.2,trolebus:2.4,cablebus:2.8,tren_ligero:3.4,tren:3.6,mexibus:3,mexicable:2.8};
+var DASH={cablebus:'2 5',mexicable:'2 5',tren:'9 4'};
+var SISN={metro:'Metro',metrobus:'Metrobús',trolebus:'Trolebús',cablebus:'Cablebús',tren_ligero:'Tren Ligero',tren:'Trenes',mexibus:'Mexibús',mexicable:'Mexicable'};
+var ORDEN=['trolebus','mexibus','metrobus','tren_ligero','cablebus','mexicable','tren','metro'];
+var IPT_STOPS=[[0,[59,66,80]],[40,[108,77,122]],[60,[179,59,128]],[78,[232,56,142]],[100,[255,122,184]]];
+function iptColor(v){ v=clamp(pct(v)||0,0,100); for(var i=1;i<IPT_STOPS.length;i++){ if(v<=IPT_STOPS[i][0]){ var a=IPT_STOPS[i-1], b=IPT_STOPS[i], f=(v-a[0])/(b[0]-a[0]); var c=a[1].map(function(x,j){return Math.round(x+(b[1][j]-x)*f);}); return 'rgb('+c.join(',')+')'; } } return 'rgb(255,122,184)'; }
+var TERR = S.territorios.filter(function(t){ return t.lon!=null && t.lat!=null; }).map(function(t){ var c={}; for(var k in t) c[k]=t[k]; c._ipt=pct(t.ipt)||0; return c; });
+var maxPob = Math.max.apply(null, TERR.map(function(t){return +t.poblacion||0;}).concat([1]));
+var sel=null;
+function buildMap(){
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Mapa de la red de transporte masivo de la zona metropolitana y del índice de pobreza de tiempo por territorio"><rect class="m-bg" width="'+W+'" height="'+H+'"></rect><g id="g-alc">';
+  RED.alcaldias.forEach(function(a){ svg+='<path class="m-alc" d="'+pathPoly(a.coords)+'"></path>'; });
+  svg+='</g>';
+  if(RED.limite&&RED.limite.length) svg+='<path class="m-lim" d="'+pathPoly(RED.limite)+'"></path>';
+  svg+='<g id="g-lin">';
+  ORDEN.forEach(function(sis){
+    var ls=RED.lineas.filter(function(l){return l.sistema===sis;}); if(!ls.length) return;
+    svg+='<g data-sis="'+sis+'">';
+    ls.forEach(function(l){ var d=pathLine(l.coords), w=ANCHO[sis]||2.5; svg+='<path class="m-case" d="'+d+'" stroke-width="'+(w+2.6)+'"></path><path class="m-line" data-id="'+esc(l.id)+'" data-n="'+esc(l.sistema_nombre+' '+(l.sistema==='tren'?l.nombre:'Línea '+l.ruta)+(l.destinos?' · '+l.destinos:''))+'" d="'+d+'" stroke="'+aclara(l.color,0.12)+'" stroke-width="'+w+'"'+(DASH[sis]?' stroke-dasharray="'+DASH[sis]+'"':'')+'><title>'+esc(l.sistema_nombre+' '+(l.sistema==='tren'?l.nombre:'Línea '+l.ruta))+'</title></path>'; });
+    svg+='</g>';
+  });
+  svg+='</g><g id="g-nodos">';
+  (RED.nodos||[]).forEach(function(n){ var p=P(n.lon,n.lat); svg+='<circle class="m-node" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="3.4"><title>'+esc(n.nombre)+'</title></circle>'; });
+  svg+='</g><g id="g-terr">';
+  var orden = TERR.slice().sort(function(a,b){return (+b.poblacion||0)-(+a.poblacion||0);});
+  var topIpt = TERR.slice().sort(function(a,b){return b._ipt-a._ipt;}).slice(0,7).map(function(t){return t.id;});
+  orden.forEach(function(t){
+    var p=P(t.lon,t.lat), r=8+30*Math.sqrt((+t.poblacion||0)/maxPob);
+    svg+='<g class="m-terr" tabindex="0" role="button" data-id="'+esc(t.id)+'" aria-label="'+esc(t.nombre+', índice de pobreza de tiempo '+Math.round(t._ipt)+' (sintético)')+'"><circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+r.toFixed(1)+'" fill="'+iptColor(t._ipt)+'" fill-opacity=".86"></circle></g>';
+  });
+  orden.forEach(function(t){
+    if(topIpt.indexOf(t.id)<0 && ['Cuauhtémoc','Iztapalapa','Benito Juárez'].indexOf(t.nombre)<0) return;
+    var p=P(t.lon,t.lat), r=8+30*Math.sqrt((+t.poblacion||0)/maxPob);
+    svg+='<text class="m-lbl'+(topIpt.indexOf(t.id)<0?' small':'')+'" x="'+(p[0]+r+5).toFixed(1)+'" y="'+(p[1]+5).toFixed(1)+'">'+esc(t.nombre.replace(' de Morelos','').replace(' Solidaridad',''))+' '+Math.round(t._ipt)+'</text>';
+  });
+  svg+='</g><g id="g-fx"></g></svg>';
+  $('#svg-host').innerHTML=svg;
+  $('#atrib').textContent = RED.atribucion || '';
+  // Interacción líneas
+  $$('#g-lin .m-line').forEach(function(el){
+    el.addEventListener('mouseenter',function(){ $('#estado').textContent=el.dataset.n; });
+    el.addEventListener('mouseleave',function(){ $('#estado').textContent=sel?('Seleccionado: '+sel.nombre):'Toca un círculo para ver su ficha.'; });
+  });
+  $$('#g-terr .m-terr').forEach(function(el){
+    function go(){ seleccionar(el.dataset.id); }
+    el.addEventListener('click',go);
+    el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    el.addEventListener('mouseenter',function(){ var t=terr(el.dataset.id); if(t) $('#estado').textContent=t.nombre+' · IPT '+Math.round(t._ipt)+' (sintético)'; });
+  });
+  // Botones de sistema
+  var bar=$('#mapa-bar'), presentes={}; RED.lineas.forEach(function(l){presentes[l.sistema]=1;});
+  ['metro','metrobus','trolebus','tren_ligero','cablebus','tren','mexibus','mexicable'].forEach(function(sis){
+    if(!presentes[sis]) return;
+    var b=document.createElement('button'); b.type='button'; b.className='sis'; b.setAttribute('aria-pressed','true'); b.dataset.sis=sis;
+    b.innerHTML='<i style="background:'+(sis==='metro'?'#F04E98':sis==='metrobus'?'#D40D0D':sis==='trolebus'?'#3D7BE0':sis==='cablebus'?'#4EC3E0':sis==='tren_ligero'?'#3D7BE0':sis==='tren'?'#E04A3A':sis==='mexibus'?'#B04CC8':'#A07A6A')+'"></i>'+SISN[sis];
+    b.addEventListener('click',function(){ var on=b.getAttribute('aria-pressed')!=='true'; b.setAttribute('aria-pressed',on); var g=$('#g-lin g[data-sis="'+sis+'"]'); if(g) g.style.display=on?'':'none'; });
+    bar.appendChild(b);
+  });
+}
+function terr(id){ for(var i=0;i<TERR.length;i++) if(String(TERR[i].id)===String(id)) return TERR[i]; return null; }
+function seleccionar(id){
+  sel=terr(id); if(!sel) return;
+  $$('#g-terr .m-terr').forEach(function(g){ g.classList.toggle('sel', g.dataset.id===String(id)); });
+  $$('#ranking .rk').forEach(function(b){ b.classList.toggle('sel', b.dataset.id===String(id)); });
+  renderFicha(sel);
+  $('#estado').textContent='Seleccionado: '+sel.nombre;
+}
+function renderFicha(t){
+  var filas=[
+    ['Población', fmtInt(+t.poblacion||0)],
+    ['Viaje promedio al trabajo', t.min_trabajo!=null?fmtMin(t.min_trabajo):'—'],
+    ['Llegan en 30 min o menos', fpct(t.pct_30min)],
+    ['Más de 2 h diarias moviéndose', fpct(t.pct_mas_2h)],
+    ['Personas que cuidan', fpct(t.pct_cuidadoras)],
+    ['Minutos extra por cuidar', t.min_cuidado_extra!=null?fmtMin(t.min_cuidado_extra):'—'],
+    ['Gasto diario en pasajes', pesos(t.gasto_diario)],
+    ['Estrés siempre o casi siempre', fpct(t.pct_estres)],
+    ['Caminan en algún tramo: mujeres', fpct(t.pct_camina_mujeres)],
+    ['Caminan en algún tramo: hombres', fpct(t.pct_camina_hombres)]
+  ];
+  var rank = TERR.slice().sort(function(a,b){return b._ipt-a._ipt;}).map(function(x){return x.id;}).indexOf(t.id)+1;
+  $('#ficha').innerHTML='<p class="eyebrow">'+esc((t.entidad||'')+(t.zona?' · '+t.zona:''))+' '+SINT+'</p><h3 style="margin-top:6px">'+esc(t.nombre)+'</h3><div style="display:flex;align-items:baseline;gap:10px;margin-top:8px"><span class="ipt">'+Math.round(t._ipt)+'</span><span class="muted">IPT de 0 a 100 · lugar '+rank+' de '+TERR.length+'</span></div><dl>'+filas.map(function(f){return '<dt>'+f[0]+'</dt><dd>'+f[1]+'</dd>';}).join('')+'</dl>';
+}
+function renderRanking(){
+  var h='';
+  TERR.slice().sort(function(a,b){return b._ipt-a._ipt;}).forEach(function(t,i){
+    h+='<li><button type="button" class="rk" data-id="'+esc(t.id)+'"><span class="n">'+(i+1)+'</span><span class="t"><b>'+esc(t.nombre)+'</b><span class="bar"><i style="width:'+clamp(t._ipt,0,100)+'%"></i></span></span><span class="v">'+Math.round(t._ipt)+'</span></button></li>';
+  });
+  $('#ranking').innerHTML=h;
+  $$('#ranking .rk').forEach(function(b){ b.addEventListener('click',function(){ seleccionar(b.dataset.id); }); });
+}
+function limpiarFx(){ $('#g-fx').innerHTML=''; $('#svg-host svg').classList.remove('dim'); $$('#g-lin .m-line').forEach(function(l){l.classList.remove('hi');}); $('#panel-accion').hidden=true; ['#b-cuidado','#b-lluvia'].forEach(function(s){$(s).setAttribute('aria-pressed','false');}); }
+function centrosCuidado(){
+  var nodos=(RED.nodos||[]).slice();
+  var cand=nodos.map(function(n){
+    var score=0, pob=0, cuid=0;
+    TERR.forEach(function(t){ var d=dkm(n.lon,n.lat,t.lon,t.lat); var w=Math.exp(-d/3); var pc=(pct(t.pct_cuidadoras)||25)/100; score += (+t.poblacion||0)*pc*(t._ipt/100)*w; if(d<4){ pob+=(+t.poblacion||0); cuid+=(+t.poblacion||0)*pc; } });
+    return {n:n, score:score, pob:pob, cuid:cuid};
+  }).sort(function(a,b){return b.score-a.score;});
+  var elegidos=[];
+  cand.forEach(function(c){ if(elegidos.length>=3) return; if(elegidos.every(function(e){return dkm(e.n.lon,e.n.lat,c.n.lon,c.n.lat)>3;})) elegidos.push(c); });
+  return elegidos;
+}
+function nombreLineas(arr){ return (arr||[]).map(function(id){ var p=id.split('-'), s=SISN[p[0]]||p[0]; if(s==='Trenes') s='Tren'; return s+(p[1]?' '+p[1]:''); }).join(' · '); }
+function toggleCuidado(force){
+  var on = force!=null? force : $('#b-cuidado').getAttribute('aria-pressed')!=='true';
+  limpiarFx(); if(!on) return;
+  $('#b-cuidado').setAttribute('aria-pressed','true');
+  var el=centrosCuidado(), fx='';
+  el.forEach(function(c,i){ var p=P(c.n.lon,c.n.lat); fx+='<circle class="m-ring" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="22"></circle><circle class="m-pin" cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="13"></circle><text class="m-pin-n" x="'+p[0].toFixed(1)+'" y="'+p[1].toFixed(1)+'">'+(i+1)+'</text><text class="m-lbl" x="'+(p[0]+18).toFixed(1)+'" y="'+(p[1]-14).toFixed(1)+'">'+esc(c.n.nombre)+'</text>'; });
+  $('#g-fx').innerHTML=fx;
+  var pa=$('#panel-accion'); pa.hidden=false;
+  pa.innerHTML='<p class="eyebrow">Propuesta de ubicación '+SINT+'</p><h3 style="margin-top:6px">Tres centros de cuidado junto a transbordos</h3><p class="nota" style="margin-top:4px">Trama ordena los nodos de transbordo por personas cuidadoras cercanas y por pobreza de tiempo. Así se elige dónde un centro de cuidado de la Ley del Sistema Público de Cuidados ahorra más viajes.</p><ol class="lista-prop">'+el.map(function(c){ return '<li><b>'+esc(c.n.nombre)+'</b><br><span class="nota">'+esc(nombreLineas(c.n.lineas))+'</span><br><span class="num">'+fmtInt(c.cuid)+'</span> personas cuidadoras a 4 km o menos</li>'; }).join('')+'</ol>';
+  $('#estado').textContent='Centros de cuidado propuestos: '+el.map(function(c){return c.n.nombre;}).join(', ');
+}
+function toggleLluvia(force){
+  var on = force!=null? force : $('#b-lluvia').getAttribute('aria-pressed')!=='true';
+  limpiarFx(); if(!on) return;
+  $('#b-lluvia').setAttribute('aria-pressed','true');
+  var svg=$('#svg-host svg'); svg.classList.add('dim');
+  var LA=lineaPorId('metro-A'); var alt=['trolebus-11','cablebus-2','metrobus-2','mexibus-3'];
+  alt.forEach(function(id){ var el=$('#g-lin .m-line[data-id="'+id+'"]'); if(el) el.classList.add('hi'); });
+  var fx='';
+  if(LA){ fx+='<path class="m-cut" d="'+pathLine(LA.coords)+'"></path>'; }
+  $('#g-fx').innerHTML=fx;
+  var estA=(RED.estaciones||[]).filter(function(e){ return e.sistema==='metro' && (e.lineas||[]).indexOf('A')>=0; });
+  var afect=TERR.filter(function(t){ return estA.some(function(e){ return dkm(e.lon,e.lat,t.lon,t.lat)<4.5; }); });
+  var pob=afect.reduce(function(s,t){return s+(+t.poblacion||0);},0);
+  var pa=$('#panel-accion'); pa.hidden=false;
+  pa.innerHTML='<p class="eyebrow">Corte simulado</p><h3 style="margin-top:6px">Lluvia fuerte: Línea A suspendida</h3><p style="margin-top:6px"><span class="ipt" style="font:700 28px/1 var(--f-display);color:var(--bad)">'+fmtInt(pob)+'</span> <span class="muted">personas viven en los territorios que rodean la Línea A (centro a menos de 4.5 km de una estación)</span> '+SINT+'</p><p class="nota" style="margin-top:6px">Territorios: '+esc(afect.map(function(t){return t.nombre;}).join(', ')||'—')+'.</p><p class="nota" style="margin-top:6px">Trama avisa antes de salir y reparte el viaje en el Trolebús 11 (Chalco–Santa Martha), el Cablebús 2, el Metrobús 2 y el Mexibús 3. Dato real: en 2025 la lluvia cortó la Línea A al menos 14 veces (Infobae).</p>';
+  $('#estado').textContent='Línea A suspendida (simulación). En color: rutas alternas.';
+}
+$('#b-cuidado').addEventListener('click',function(){ toggleCuidado(); });
+$('#b-lluvia').addEventListener('click',function(){ toggleLluvia(); });
+
+/* =================================================================
+   FUTUROS 2040
+   ================================================================= */
+var IND=[
+ {n:1,id:'m30',nombre:'Llegan a su trabajo en 30 min o menos',hoy:'34.1%',c:23,i:28.7,t:50,fmt:function(v){return (Math.round(v*10)/10)+'%';},ok:function(v){return v>=49.95;},meta:'50%'},
+ {n:2,id:'viaje',nombre:'Viaje promedio al trabajo',hoy:'63 min',c:82,i:72,t:55,fmt:function(v){return Math.round(v)+' min';},ok:function(v){return v<=55.05;},meta:'55 min'},
+ {n:3,id:'pasaje',nombre:'Pasaje de la periferia frente al Metro',hoy:'2.8 veces',c:5.2,i:4.05,t:1,fmt:function(v){return v<=1.15?'Tarifa única':(Math.round(v*10)/10)+' veces';},ok:function(v){return v<=1.15;},meta:'Una sola tarifa'},
+ {n:4,id:'muertes',nombre:'Muertes viales al año',hoy:'424',c:620,i:500,t:190,fmt:function(v){return fmtInt(v);},ok:function(v){return v<200;},meta:'Menos de 200'},
+ {n:5,id:'mb',nombre:'Metrobús eléctrico',hoy:'168 unidades',c:300,i:672,t:1000,fmt:function(v){return v>=950?'100% de la flota':(v>672.5?'Más de 672 unidades':fmtInt(v)+' unidades');},ok:function(v){return v>=950;},meta:'100%'},
+ {n:6,id:'emis',nombre:'Emisiones del transporte frente a 2016',hoy:'Sin inventario reciente',c:0,i:-36,t:-83,fmt:function(v){return v>-2?'Sin baja':'−'+Math.abs(Math.round(v))+'%';},ok:function(v){return v<=-82.95;},meta:'−83%'},
+ {n:7,id:'bici',nombre:'Viajes en bici al día',hoy:'456 mil',c:0.45,i:0.96,t:1.5,fmt:function(v){return v<1?fmtInt(v*1000)+' mil':(Math.round(v*100)/100)+' millones';},ok:function(v){return v>=1.495;},meta:'1.5 millones'},
+ {n:8,id:'lineaA',nombre:'Suspensiones de la Línea A por lluvia al año',hoy:'14 o más (2025)',c:30,i:12,t:1,fmt:function(v){return v>=24?'Cierres de meses':(v>=10?'Una docena o más':(v<=2?'Casi ninguna':Math.round(v)+' al año'));},ok:function(v){return v<=2;},meta:'Casi ninguna'},
+ {n:9,id:'metro',nombre:'Pasajeros del Metro al año',hoy:'1,115 millones (2023)',c:980,i:1366,t:2120,fmt:function(v){return fmtInt(v)+' millones';},ok:function(v){return v>2100;},meta:'Más de 2,100 millones'}
+];
+var EXTRA=[
+ {n:10,nombre:'Pobreza de tiempo: la mitad de personas con más de 2 h diarias de traslado',meta:'Medida y publicada cada año'},
+ {n:11,nombre:'Un centro de cuidado a 15 min a pie o menos en toda la red masiva',meta:'Cuidado junto a las estaciones'}
+];
+function simular(){
+  var g=+$('#gob').value/100, t=+$('#tra').value/100, golpes=$('#golpes').checked, trama=$('#con-trama').checked;
+  var g2=Math.min(1,g+(trama?0.15:0)), t2=Math.min(1,t+(trama?0.10:0));
+  var gm=Math.sqrt(g2*t2), s=clamp((gm-0.3)/0.6,0,1);
+  var k=golpes? (1-s)*(trama?0.7:1) : 0;
+  var vals={}; IND.forEach(function(d){ vals[d.id]= d.i+(d.t-d.i)*s + (d.c-d.i)*k; });
+  var v=vals.m30, p = v<=28.7? clamp(0.5*(v-23)/5.7,0,0.5) : clamp(0.5+0.5*(v-28.7)/21.3,0.5,1);
+  return {g:g2,t:t2,s:s,k:k,golpes:golpes,trama:trama,vals:vals,p:p};
+}
+function buildGauge(){
+  var cx=160, cy=150, r=118;
+  function pt(f,rr){ var a=Math.PI*(1-f); return [cx+rr*Math.cos(a), cy-rr*Math.sin(a)]; }
+  function arc(f0,f1){ var a=pt(f0,r), b=pt(f1,r); return 'M'+a[0].toFixed(1)+' '+a[1].toFixed(1)+' A'+r+' '+r+' 0 0 1 '+b[0].toFixed(1)+' '+b[1].toFixed(1); }
+  var l1=pt(0.12,r+30), l2=pt(0.5,r+28), l3=pt(0.88,r+30);
+  $('#gauge').innerHTML='<svg viewBox="0 0 320 190" role="img" aria-label="Indicador del escenario hacia el que va la metrópoli"><path class="g-zone" d="'+arc(0,0.3)+'" stroke="var(--bad)" stroke-opacity=".85"></path><path class="g-zone" d="'+arc(0.302,0.698)+'" stroke="var(--warn)" stroke-opacity=".85"></path><path class="g-zone" d="'+arc(0.7,1)+'" stroke="var(--ok)" stroke-opacity=".9"></path><text class="g-lbl" x="'+(l1[0]-6).toFixed(0)+'" y="'+(l1[1]+4).toFixed(0)+'" text-anchor="middle">Colapso</text><text class="g-lbl" x="'+l2[0].toFixed(0)+'" y="'+(l2[1]+8).toFixed(0)+'" text-anchor="middle">Inercial</text><text class="g-lbl" x="'+(l3[0]+4).toFixed(0)+'" y="'+(l3[1]+4).toFixed(0)+'" text-anchor="middle">Transformación</text><g id="aguja" style="transform-origin:'+cx+'px '+cy+'px"><line class="g-needle" x1="'+cx+'" y1="'+cy+'" x2="'+cx+'" y2="'+(cy-r+18)+'" style="transition:none"></line></g><circle class="g-hub" cx="'+cx+'" cy="'+cy+'" r="9"></circle></svg>';
+}
+var ESC={c:['Colapso','La metrópoli rota'],i:['Inercial','La metrópoli de las cuatro horas'],t:['Transformación','La metrópoli que cuida']};
+function renderFuturos(){
+  var R=simular(), p=R.p, z = p<0.3?'c':(p<0.7?'i':'t');
+  var ag=$('#aguja'); if(ag){ ag.style.transform='rotate('+((p-0.5)*180).toFixed(1)+'deg)'; ag.style.transition=reduce?'none':'transform .35s ease'; }
+  var en=$('#esc-nombre'); en.textContent=ESC[z][0]; en.className='esc-nombre '+z; $('#esc-sub').textContent=ESC[z][1];
+  var varTxt='';
+  if(R.g>=0.6 && R.t<0.4) varTxt='Variante del cruce: <b>Red unida a la intemperie</b>. Una tarifa para todos, pero el clima y el hundimiento cortan la red.';
+  else if(R.g<0.4 && R.t>=0.6) varTxt='Variante del cruce: <b>Islas eléctricas</b>. Cada gobierno electrifica lo suyo y nada se conecta.';
+  if(R.golpes) varTxt += (varTxt?' ':'')+'Con golpes externos encadenados'+(R.trama?'; Trama amortigua una parte con avisos y rutas alternas.':'.');
+  $('#esc-var').innerHTML=varTxt;
+  // Indicadores
+  var th='<thead><tr><th>Indicador</th><th>Hoy <span class="real">Real</span></th><th>2040 <span class="proy">➕</span></th><th>Camino</th><th>Meta</th></tr></thead><tbody>';
+  var cumplidas=0;
+  IND.forEach(function(d){
+    var v=d.vals_=R.vals[d.id], ok=d.ok(v); if(ok) cumplidas++;
+    var pos=clamp((v-d.c)/(d.t-d.c),0,1)*100, ip=clamp((d.i-d.c)/(d.t-d.c),0,1)*100;
+    th+='<tr><td>'+d.nombre+'</td><td class="muted">'+d.hoy+'</td><td class="v">'+d.fmt(v)+'</td><td><div class="mini" aria-hidden="true"><u style="left:'+ip+'%"></u><i style="left:'+pos+'%"></i></div></td><td class="ok" aria-label="'+(ok?'Se cumple':'No se cumple')+'">'+(ok?'✅':'❌')+'</td></tr>';
+  });
+  th+='</tbody>';
+  $('#ind').innerHTML=th;
+  // Metas
+  var m10 = (R.trama || R.g>=0.6) && R.s>=0.85, m11 = R.g>=0.7 && R.s>=0.8;
+  if(m10) cumplidas++; if(m11) cumplidas++;
+  var ml='';
+  IND.forEach(function(d){ var ok=d.ok(R.vals[d.id]); ml+='<li><span class="n">'+d.n+'</span><span class="s '+(ok?'si':'no')+'" aria-label="'+(ok?'Se cumple':'No se cumple')+'">'+(ok?'✅':'❌')+'</span><span>'+d.nombre+': <b>'+d.meta+'</b></span></li>'; });
+  [m10,m11].forEach(function(ok,i){ var e=EXTRA[i]; ml+='<li><span class="n">'+e.n+'</span><span class="s '+(ok?'si':'no')+'" aria-label="'+(ok?'Se cumple':'No se cumple')+'">'+(ok?'✅':'❌')+'</span><span>'+e.nombre+': <b>'+e.meta+'</b></span></li>'; });
+  $('#metas').innerHTML=ml; $('#metas-n').textContent=cumplidas;
+  // Rosa
+  var per=rosa(), dd=per.dias||{}, mi=(dd.inercial_2040&&dd.inercial_2040.total_min)||270, mt=(dd.transformacion_2040&&dd.transformacion_2040.total_min)||120;
+  var rm=$('#rosa-min'), rt=$('#rosa-txt');
+  if(p<0.25){ rm.textContent='Deja su trabajo'; rt.textContent=(dd.colapso_2040&&dd.colapso_2040.nota)||'Pantitlán lleva meses cerrado.'; }
+  else { var mins = p>=0.5? mi-(mi-mt)*((p-0.5)/0.5) : mi+(0.5-p)/0.25*40; rm.textContent=fmtMin(mins); rt.textContent='moviéndose al día'+(p>=0.85?'; le queda la tarde':''); }
+}
+['gob','tra'].forEach(function(id){ $('#'+id).addEventListener('input',renderFuturos); });
+['golpes','con-trama'].forEach(function(id){ $('#'+id).addEventListener('change',renderFuturos); });
+var PRESET={colapso:[10,10,true,false],inercial:[25,30,false,false],transformacion:[90,90,false,true]};
+function aplicarPreset(k){ var v=PRESET[k]; $('#gob').value=v[0]; $('#tra').value=v[1]; $('#golpes').checked=v[2]; $('#con-trama').checked=v[3]; renderFuturos(); }
+$$('.preset').forEach(function(b){ b.addEventListener('click',function(){ aplicarPreset(b.dataset.p); }); });
+
+/* =================================================================
+   RECORRIDO (30 s)
+   ================================================================= */
+var tour=null;
+function paso(n,txt){ $('#tour-txt').textContent=txt; $$('#tour-pasos i').forEach(function(d,i){ d.classList.toggle('on', i<=n); }); }
+function espera(ms){ return new Promise(function(res){ var id=setTimeout(res,ms); if(tour) tour.timers.push(id); }); }
+function vivo(){ return tour && !tour.stop; }
+function animarPalancas(desde,hasta,ms){
+  return new Promise(function(res){
+    if(reduce){ $('#gob').value=hasta[0]; $('#tra').value=hasta[1]; renderFuturos(); return res(); }
+    var t0=null;
+    function f(ts){ if(!vivo()) return res(); if(t0==null) t0=ts; var x=clamp((ts-t0)/ms,0,1), e=x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2; $('#gob').value=Math.round(desde[0]+(hasta[0]-desde[0])*e); $('#tra').value=Math.round(desde[1]+(hasta[1]-desde[1])*e); renderFuturos(); if(x<1) requestAnimationFrame(f); else res(); }
+    requestAnimationFrame(f);
+  });
+}
+function salirTour(){ if(!tour) return; tour.stop=true; tour.timers.forEach(clearTimeout); tour=null; $('#tour').hidden=true; }
+function iniciarTour(){
+  if(tour) return; tour={stop:false,timers:[]}; $('#tour').hidden=false;
+  var per=rosa(), hoy=(per.dias&&per.dias.hoy)||{}, tr=(per.dias&&per.dias.trama_2030)||{};
+  var diff=(hoy.total_min||0)-(tr.total_min||0);
+  (async function(){
+    show('midia'); st.p=Math.max(0,S.personajes.indexOf(per)); st.modo='hoy'; st.lluvia=false; st.tranq=false; st.acc=false; $('#o-lluvia').checked=false; $('#o-tranq').checked=false; $('#o-acc').checked=false; renderPersonas(); renderDia();
+    paso(0, (per.nombre||'Rosa')+' vive en '+nombreTerr(per.territorio||'Valle de Chalco').replace(' Solidaridad','')+' y cuida. Hoy pasa '+fmtMin(hoy.total_min)+' moviéndose al día.');
+    await espera(5000); if(!vivo()) return;
+    st.modo='trama'; renderDia();
+    paso(0, 'Con Trama: '+fmtMin(Math.abs(diff))+' menos al día, unas '+Math.round(diff*20/60)+' horas al mes que vuelven al cuidado y al descanso.');
+    await espera(5000); if(!vivo()) return;
+    show('red'); limpiarFx();
+    paso(1, 'La ciudad ve dónde se pierde el tiempo: el oriente y el norte concentran la pobreza de tiempo.');
+    await espera(3500); if(!vivo()) return;
+    toggleLluvia(true);
+    paso(1, 'Llueve y se corta la Línea A. Trama avisa antes de salir y reparte el viaje en trolebús, Cablebús y Mexibús.');
+    await espera(4000); if(!vivo()) return;
+    toggleCuidado(true);
+    paso(1, 'Y propone dónde poner los centros de cuidado: junto a los transbordos con más personas cuidadoras.');
+    await espera(4000); if(!vivo()) return;
+    show('futuros'); aplicarPreset('inercial');
+    paso(2, 'Si nada cambia, vamos hacia la metrópoli de las cuatro horas.');
+    await espera(3000); if(!vivo()) return;
+    $('#con-trama').checked=true;
+    paso(2, 'Con metas, una tarifa y Trama midiendo, la aguja se mueve hacia la Transformación.');
+    await animarPalancas([25,30],[90,90],4500); if(!vivo()) return;
+    await espera(2500); if(!vivo()) return;
+    paso(2, 'Trama: la red que cuida tu tiempo.');
+    await espera(2500); salirTour();
+  })();
+}
+$('#btn-tour').addEventListener('click',iniciarTour);
+$('#tour-salir').addEventListener('click',salirTour);
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') salirTour(); });
+
+/* ---------- Calibración ---------- */
+function renderCal(){
+  $('#dlg-aviso').textContent = (S.aviso || '') + (S.muestra&&S.muestra.personas? ' Muestra: '+fmtInt(S.muestra.personas)+' personas y '+fmtInt(S.muestra.tramos||0)+' tramos sintéticos.' : '') + (S.metodo&&S.metodo.ipt? ' '+S.metodo.ipt : '');
+  var cal=S.calibracion||[];
+  if(!cal.length){ $('#cal').innerHTML='<tbody><tr><td>La tabla de calibración llega con scripts/generar_sinteticos.py.</td></tr></tbody>'; return; }
+  var h='<thead><tr><th>Indicador</th><th>Oficial</th><th>Sintético</th><th>¿Cuadra?</th><th>Fuente</th></tr></thead><tbody>';
+  cal.forEach(function(c){ var u=c.unidad||''; h+='<tr><td>'+esc(c.indicador)+'</td><td class="num">'+esc(c.oficial)+' '+esc(u)+'</td><td class="num">'+esc(c.sintetico)+' '+esc(u)+'</td><td>'+(c.ok===false?'⚠️':'✅')+'</td><td>'+(c.url?'<a href="'+esc(c.url)+'" target="_blank" rel="noopener">'+esc(c.fuente||'fuente')+'</a>':esc(c.fuente||''))+'</td></tr>'; });
+  $('#cal').innerHTML=h+'</tbody>';
+}
+$('#ver-cal').addEventListener('click',function(){ renderCal(); var d=$('#dlg-cal'); try{ d.showModal(); }catch(e){ d.setAttribute('open',''); } });
+$('#dlg-cerrar').addEventListener('click',function(){ var d=$('#dlg-cal'); try{ d.close(); }catch(e){ d.removeAttribute('open'); } });
+
+/* ---------- Arranque ---------- */
+renderPersonas(); renderDia();
+buildMap(); renderRanking();
+var top1 = TERR.slice().sort(function(a,b){return b._ipt-a._ipt;})[0]; if(top1) seleccionar(top1.id);
+buildGauge(); renderFuturos();
+var h0=(location.hash||'').replace('#','');
+if(h0==='recorrido'){ show('midia'); setTimeout(iniciarTour,800); } else show(h0||'midia');
+})();
+</script>
+<!--DEV:START--></body>
+</html><!--DEV:END-->
