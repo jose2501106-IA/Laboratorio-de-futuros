@@ -101,7 +101,7 @@ Todo cambio debe decir **a qué criterio le suma**. Si no le suma a ninguno, no 
 | Viajes en bici al día | 456 mil (2024) | ~450 mil | 0.96 M | 1.5 M |
 | Emisiones frente a 2016 | Sin inventario reciente | Sin baja | −36% | −83% |
 | Suspensiones de la Línea A por lluvia | 14 o más (2025) | Cierres de meses | Una docena o más | Casi ninguna |
-| **El día de Rosa** | 3 h 50 min (SINTÉTICO) | Deja su trabajo: Pantitlán lleva 4 meses cerrado | 4 h 30 min | 2 h |
+| **El día de Rosa** | 3 h 52 min (SINTÉTICO) | Deja su trabajo: Pantitlán lleva 4 meses cerrado | 4 h 30 min | 2 h |
 
 **Las 11 metas a 2040** (con hitos 2030 y 2035 en [escenarios-2040.md](escenarios-2040.md#las-metas-son)):
 1. 50% llega a su trabajo en 30 min o menos.

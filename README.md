@@ -13,7 +13,7 @@ Investigación de tendencias y fuerzas motrices de la movilidad en la Ciudad de 
 | Archivo | Contenido |
 | --- | --- |
 | [PROPUESTA.md](PROPUESTA.md) | **La propuesta: Trama**, mapeada a los cinco criterios del jurado |
-| [app/](app/) | **Prototipo de Trama**: Mi día, Red viva y Futuros 2040, sobre la red real y con datos sintéticos marcados |
+| [app/](app/) | **Prototipo de Trama**: Mi día, Red viva y Futuros 2040, sobre la red real y con datos sintéticos marcados. [`app/dist/trama.html`](app/dist/trama.html) abre sin servidor |
 | [datos/sinteticos/](datos/sinteticos/) | Datos **SINTÉTICOS** calibrados contra cifras oficiales, con su generador en `scripts/` |
 | [CLAUDE.md](CLAUDE.md) | Todo el contexto para seguir construyendo el prototipo |
 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | Rúbrica del jurado y autoevaluación |

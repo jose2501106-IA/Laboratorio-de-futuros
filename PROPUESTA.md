@@ -34,7 +34,7 @@ Las cifras del equipo se marcan con ➕. Los datos sintéticos dicen **SINTÉTIC
 - **El viaje enferma:** en un estudio exploratorio de la UNAM, se estresa siempre o casi siempre en el trayecto 18% de quienes viven en la CDMX, 24% de quienes vienen de municipios conurbados y 35% de quienes vienen del Edomex ([UNAM Global](https://unamglobal.unam.mx/usuarios-de-transporte-publico-se-estresan-en-sus-recorridos/)).
 - **No se mide:** la última encuesta origen-destino es de 2017, y la línea de movilidad del plan a 2045 no menciona el cuidado ni trae metas ([cuadernillo del PGD](https://sedeco.cdmx.gob.mx/storage/app/media/Proyecto%20PGD/PGD_cuadernillo.pdf)).
 
-**Rosa** tiene 54 años, vive en Valle de Chalco y limpia oficinas en Polanco. Cuida a su mamá y a su nieta de 6 años. Hoy pasa unas **3 horas 50 minutos** moviéndose cada día y paga cuatro pasajes por trayecto (SINTÉTICO, calibrado; ver [`datos/sinteticos/`](datos/sinteticos/)).
+**Rosa** tiene 54 años, vive en Valle de Chalco y limpia oficinas en Polanco. Cuida a su mamá y a su nieta de 6 años. Hoy pasa unas **3 horas 52 minutos** moviéndose cada día y paga cuatro pasajes por trayecto (SINTÉTICO, calibrado; ver [`datos/sinteticos/`](datos/sinteticos/)).
 
 **Implicaciones sociales**
 - **Empleo:** quien vive lejos acepta trabajos peores o deja de trabajar.
@@ -185,7 +185,7 @@ Un solo modelo de datos une cinco capas:
 | Tarifa integrada simulada para el corredor, con ganadores y perdedores | Informe público | 3 |
 | 0 datos personales guardados | Auditoría externa del código | Confianza, que es la base de todo |
 
-Con los centros de cuidado y la tarifa integrada (2030), Rosa pasaría de unas 3 h 50 min a unas 3 h 05 min al día: **−45 minutos, unas 15 horas al mes** (SINTÉTICO ➕).
+Con los centros de cuidado y la tarifa integrada (2030), Rosa pasaría de 3 h 52 min a 3 h 05 min al día, y de 71.50 a 36 pesos: **−47 minutos, unas 15 horas al mes** (SINTÉTICO ➕; tarifa integrada supuesta de 18 pesos por viaje).
 
 ---
 
@@ -203,8 +203,11 @@ Con los centros de cuidado y la tarifa integrada (2030), Rosa pasaría de unas 3
 
 ## 10. El prototipo (lo que ya existe hoy)
 
-- **Qué es:** una página que se abre en el navegador, con las tres vistas y un recorrido de presentación.
-- **Dónde:** [`app/`](app/). Se abre con `python3 -m http.server -d app` y luego en `http://localhost:8000`.
+- **Qué es:** una página que se abre en el navegador, con las tres vistas y un recorrido de presentación (`#recorrido`, unos 34 segundos).
+- **Dónde:**
+  - Publicado en Claude: https://claude.ai/artifact/2iSsL5bfDTXz1RaxGKurfY. Es privado hasta que se comparta desde su menú Compartir.
+  - En el repo: [`app/`](app/). [`app/dist/trama.html`](app/dist/trama.html) es un solo archivo que abre sin servidor; la versión de desarrollo se abre con `python3 -m http.server -d app` y `http://localhost:8000`.
+- **Probado:** cero errores de JS, en escritorio (1366 px) y en celular (390 px).
 - **Qué es real y qué es sintético:**
   - La red es real: OpenStreetMap y GTFS de SEMOVI, con atribución.
   - Las personas, los viajes y el índice son **SINTÉTICOS**, y lo dicen en pantalla.

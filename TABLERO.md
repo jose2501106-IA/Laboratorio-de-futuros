@@ -22,7 +22,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 | 6 | [pitch.md](pitch.md) | Guion de unos cuatro minutos y preguntas del jurado | ✅ alineado con el deck de 13 láminas |
 | 7 | [img/](img/) | Matriz, cruce y ruta | ✅ |
 
-**Fuera del repo (en Claude, privados):** el documento editable y el deck de 13 láminas. Compártelos desde su menú Compartir si hay que entregarlos.
+**Fuera del repo (en Claude, privados):** el documento editable, el deck de 16 láminas (unos 4 min 45 s) y el prototipo **Trama** (https://claude.ai/artifact/2iSsL5bfDTXz1RaxGKurfY). Compártelos desde su menú Compartir si hay que entregarlos.
 
 ---
 
@@ -58,10 +58,11 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 | Pendiente | Dueño | Urgencia |
 | --- | --- | --- |
 | ~~Decidir la propuesta~~ → **Trama**, en [PROPUESTA.md](PROPUESTA.md) | Equipo | ✅ 13:05 |
-| Abrir el prototipo y ensayar el "Recorrido" de 30 segundos para el pitch | Equipo | 🔴 Antes de las 14:00 |
+| Abrir el prototipo y ensayar el "Recorrido" (`#recorrido`, unos 34 s) para el pitch | Equipo | 🔴 Antes de las 14:00 |
+| Compartir el **prototipo Trama**, el deck y el documento desde su menú Compartir | José | 🔴 Antes de las 14:00 |
 | Si un chat tiene su propio CLAUDE.md, moverlo a su carpeta (por ejemplo `sistema/CLAUDE.md`): en la raíz solo va uno | Chat Análisis sistémico | 🟡 |
 | Cambiar los datos sintéticos por datos reales (encuesta del piloto) | Equipo, después del evento | ⚪ |
-| Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility) | José | 🔴 Ya |
+| Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility). Ojo: si el jurado debe ver el repo, hazlo privado después de la evaluación | José | 🔴 Decidir |
 | Poner el nombre del equipo en la portada y el cierre del deck | Equipo | 🔴 Antes de las 14:00 |
 | Compartir el documento y el deck si hay que entregarlos | José | 🔴 Antes de las 14:00 |
 | Revisar las cifras de colapso y transformación con la misma aritmética de la retrospectiva | Chat Estudio de futuros | 🟡 |
