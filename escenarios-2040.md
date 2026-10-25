@@ -72,7 +72,7 @@ Algunas cosas van a pasar **sin importar qué decidamos**. Son la base que compa
 
 | Lo casi seguro | Dato de hoy | Hacia 2040 ➕ |
 | --- | --- | --- |
-| **La ciudad envejece** (S1) | Edad mediana de 37 años; 16.2% tenía 60 años o más en 2020 | Edad mediana de unos 43 años; una de cada cuatro personas con 60 o más |
+| **La ciudad envejece** (S1) | Edad mediana de 37 años (2025); 16.2% tenía 60 años o más (2020) | Edad mediana de unos 43 años; una de cada cuatro personas con 60 o más |
 | **Más calor** (A1) | Récord de 34.7 °C en 2024; la isla de calor suma 3 a 4 °C en el oriente | Más días de calor extremo para quien camina y espera |
 | **El suelo sigue bajando** (A5) | Pantitlán baja unos 10 cm al año | Mientras se bombee el acuífero, el oriente sigue hundiéndose |
 | **La CDMX no crece; la periferia sí** (S2) | La CDMX es 42.2% de la metrópoli (2020) | Entre 35% y 39% |
