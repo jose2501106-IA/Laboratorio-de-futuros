@@ -109,6 +109,43 @@ Dos preguntas que hoy nadie ha cerrado (las incertidumbres críticas de la matri
 
 *Fuentes del "hoy": INEGI (Intercensal 2025, EOD 2017), SEMOVI, Expansión Política, Infobae, SEDEMA (ELAC), STC. Detalle en [retrospectiva-2006-2026.md](retrospectiva-2006-2026.md#escenario-inercial-2040-si-nada-cambia) e [investigacion.md](investigacion.md).*
 
+### Las metas son
+
+La **Transformación** es, en concreto, cumplir estas once metas. Los hitos de 2030 y 2035 son del equipo (➕): son pasos intermedios razonables entre el dato de hoy y la meta de 2040. Pueden servir como metas intermedias del plan a 2045, que hoy no trae metas numéricas.
+
+| # | Meta | Hoy | 2030 ➕ | 2035 ➕ | 2040 |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Ocupados que llegan a su trabajo en 30 min o menos | 34.1% | 38% | 44% | **50%** |
+| 2 | Viaje promedio al trabajo | 63 min | 61 min | 58 min | **55 min** |
+| 3 | Tarifa | La periferia paga 2.8 veces el Metro | Tarifa integrada en el corredor oriente | Tarifa integrada metropolitana | **Una sola tarifa y una tarjeta** |
+| 4 | Muertes viales al año | 424 | 330 | 260 | **Menos de 200** |
+| 5 | Metrobús eléctrico | 168 unidades | La mitad de la flota | 100% (meta oficial 2033) | **100%** |
+| 6 | Emisiones del transporte frente a 2016 | Sin inventario reciente | −25% | −55% | **−83%** |
+| 7 | Viajes en bici al día | 456 mil | 800 mil | 1.1 millones | **1.5 millones** |
+| 8 | Suspensiones de la Línea A por lluvia al año | 14 o más | 8 o menos | 3 o menos | **Casi ninguna** |
+| 9 | Pasajeros del Metro al año | 1,115 millones | 1,450 millones | 1,800 millones | **Más de 2,100 millones** |
+| 10 | Pobreza de tiempo | No se mide | Índice anual por alcaldía y municipio (desde 2027) | Es meta del plan a 2045 | **La mitad de personas con más de 2 h diarias de traslado** ➕ |
+| 11 | Cuidado junto a las estaciones | No hay | 3 centros piloto en el oriente | En las estaciones de transbordo del oriente y el norte | **Un centro de cuidado a 15 min a pie o menos en toda la red masiva** |
+
+**¿Qué metas cumple cada escenario?**
+
+| Meta 2040 | 🔴 Colapso | 🟡 Inercial | 🟢 Transformación |
+| --- | --- | --- | --- |
+| 1. Llegan en 30 min o menos: 50% | ❌ ~23% | ❌ 28.7% | ✅ |
+| 2. Viaje al trabajo: 55 min | ❌ 80 min o más | ❌ 72 min | ✅ |
+| 3. Una sola tarifa | ❌ | ❌ | ✅ |
+| 4. Muertes viales: menos de 200 | ❌ más de 600 | ❌ unas 500 | ✅ |
+| 5. Metrobús 100% eléctrico | ❌ unos 300 | 🟡 672, diez años tarde | ✅ desde 2033 |
+| 6. Emisiones: −83% | ❌ sin baja | ❌ −36% | ✅ |
+| 7. Bici: 1.5 millones de viajes | ❌ | ❌ 0.96 millones | ✅ |
+| 8. Línea A casi sin cortes | ❌ cierres de meses | ❌ una docena o más | ✅ |
+| 9. Metro: más de 2,100 millones | ❌ menos de 1,000 millones | ❌ 1,366 millones | ✅ |
+| 10. Pobreza de tiempo medida y a la baja | ❌ | ❌ seguimos con la EOD 2017 | ✅ |
+| 11. Cuidado junto a las estaciones | ❌ | ❌ centros lejos de las estaciones | ✅ |
+| **Total** | **0 de 11** | **0 de 11 (una a medias)** | **11 de 11** |
+
+La propuesta para mover a la ciudad del Inercial a la Transformación está en [PROPUESTA.md](PROPUESTA.md).
+
 ---
 
 ## 6. Escenario 1 · COLAPSO: "La metrópoli rota"

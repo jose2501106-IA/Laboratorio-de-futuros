@@ -20,19 +20,21 @@
 
 | # | Criterio | Lo que ya tenemos | Estado | Qué falta |
 | --- | --- | --- | --- | --- |
-| 1 | Análisis prospectivo | 34 fuerzas con fuente, matriz, línea del tiempo 2006–2026 y tres escenarios con cifras ([escenarios-2040.md](escenarios-2040.md)) | 🟡 | Una propuesta que **salga** de las dos incertidumbres críticas y diga **qué trayectoria cambia** |
-| 2 | Pertinencia social | Lente de cuidados y periferias, Rosa, 34.1% llega en 30 min o menos, estrés del traslado | ✅ | Decir el beneficio en una cifra (por ejemplo, horas que se devuelven al mes) |
-| 3 | Contribución del conocimiento | Huecos detectados: no hay encuesta origen-destino desde 2017, nadie mide la pobreza de tiempo ni el estrés del viaje, no hay inventario de emisiones reciente | 🟡 | Convertir esos huecos en **qué investigar, desarrollar e innovar** dentro de la propuesta |
-| 4 | Claridad y viabilidad preliminar | Ruta 2026–2040 y tres decisiones de política | 🔴 | **Una** propuesta delimitada (lugar, población, entregable) con primeros pasos a 3, 12 y 24 meses |
-| 5 | Presentación | Deck de 13 láminas con guion de unos 4 minutos | 🟡 | Confirmar el tiempo que da el jurado; agregar 1 o 2 láminas de propuesta y recortar para no pasarnos |
+| 1 | Análisis prospectivo | 34 fuerzas con fuente, matriz, línea del tiempo 2006–2026, tres escenarios con cifras y **11 metas** ([escenarios-2040.md](escenarios-2040.md)). **Trama** sale de las dos incertidumbres críticas y dice qué trayectoria cambia ([PROPUESTA.md §2](PROPUESTA.md#2-de-dónde-sale-criterio-1)) | ✅ | Decirlo en voz alta en el pitch: "Trama ataca justo lo que separa al Inercial de la Transformación" |
+| 2 | Pertinencia social | Lente de cuidados y periferias, Rosa, 34.1% llega en 30 min o menos, estrés del traslado. Beneficio en cifra: media hora diaria son unas 10 horas al mes | ✅ | — |
+| 3 | Contribución del conocimiento | Qué investigar, desarrollar e innovar, en [PROPUESTA.md §5](PROPUESTA.md#5-qué-hay-que-investigar-desarrollar-e-innovar-criterio-3); datos sintéticos marcados y calibrados mientras llega la encuesta | ✅ | — |
+| 4 | Claridad y viabilidad preliminar | Una propuesta delimitada: corredor oriente, cuidadoras y trabajadoras, Trama y una ruta a 3, 12 y 24 meses con costo orientativo; prototipo funcionando | ✅ | — |
+| 5 | Presentación | Deck con las láminas de metas y propuesta, y guion de 5 min o menos | 🟡 | Confirmar el tiempo que da el jurado y ensayar una vez con cronómetro |
 
-**Conclusión:** el análisis está fuerte; lo que más puntos nos puede costar es que **todavía no hay una propuesta concreta**. Los criterios 1, 3 y 4 hablan de "la propuesta".
+**Conclusión:** con Trama ya hay **una** propuesta concreta, que sale del análisis y tiene ruta. Lo que falta es ensayar.
 
 ---
 
-## Propuesta candidata (por aprobar)
+## Propuesta elegida: Trama · la red que cuida tu tiempo
 
-Sale directo de nuestro análisis; se presenta aquí para decidirla, no está aprobada.
+La candidata "Viaje que cuida" (abajo) creció y se volvió **Trama**: una app, un tablero y un simulador que gestionan el transporte público de la metrópoli como un solo sistema. El índice de pobreza de tiempo es su corazón. **Versión vigente: [PROPUESTA.md](PROPUESTA.md).** Como la encuesta no se pudo levantar en el evento, el prototipo usa datos **SINTÉTICOS** marcados ([datos/sinteticos/](datos/sinteticos/)); la encuesta real queda como el primer paso del piloto.
+
+### Antecedente: la candidata "Viaje que cuida"
 
 **"Viaje que cuida": un índice público de pobreza de tiempo para decidir dónde poner los centros de cuidado y las estaciones.**
 

@@ -6,7 +6,7 @@ Chilangatón · Laboratorio de Futuros · Oct 25, 2026 · @iam\_josehugo
 
 **Tesis.** La movilidad de 2040 se decide en dos preguntas que nadie ha cerrado: si la metrópoli se gobierna como una sola y si la transición va a fondo. Si las dos salen bien, llegamos a la metrópoli que cuida; si salen mal, a la de las cuatro horas, y pierde primero quien vive lejos y quien cuida.
 
-**Ruta del análisis:** 34 fuerzas en cinco dimensiones → 4 incertidumbres críticas → 2 ejes → 4 futuros → una ruta 2026–2040 con señales de alerta.
+**Ruta del análisis:** 34 fuerzas en cinco dimensiones → 4 incertidumbres críticas → 2 ejes → 3 escenarios con 11 metas → una ruta 2026–2040 con señales de alerta → la propuesta [Trama](PROPUESTA.md).
 
 **Cinco hallazgos**
 
@@ -29,8 +29,8 @@ Chilangatón · Laboratorio de Futuros · Oct 25, 2026 · @iam\_josehugo
 1. **Escaneo STEEP:** buscamos cambios en cinco dimensiones (social, tecnológica, económica, ambiental y política) con datos de fuentes oficiales y de referencia.
 2. **Clasificación:** separamos megatendencias, tendencias, fuerzas motrices, señales débiles y comodines.
 3. **Matriz impacto × incertidumbre:** lo de alto impacto y baja incertidumbre es casi seguro y se planea; lo de alto impacto y alta incertidumbre son las incertidumbres críticas, que deciden el futuro.
-4. **Dos futuros:** cruzamos las dos incertidumbres críticas para construir el futuro indeseable y el deseable al 2040.
-5. **Ruta de regreso:** desde el futuro deseable trazamos hitos hacia hoy y señales de alerta del indeseable.
+4. **Tres escenarios:** cruzamos las dos incertidumbres críticas y los golpes externos para construir tres escenarios al 2040: Colapso, Inercial y Transformación ([escenarios-2040.md](escenarios-2040.md)), con once metas medibles.
+5. **Ruta de regreso y propuesta:** desde la Transformación trazamos hitos hacia hoy, señales de alerta y una propuesta para empezar ya: [Trama](PROPUESTA.md).
 
 **Glosario**
 
@@ -156,6 +156,8 @@ Son independientes: una metrópoli puede integrarse sin transformar su transport
 La vivienda cara (E1) empuja a la gente a la periferia (S2), donde el pasaje cuesta más (E2) y el tiempo se va en el tráfico (E3). Eso empuja a la moto (E6), que ya pone la mitad de las muertes viales (P2), y aísla aún más a quien cuida a pie (S3). Ese círculo solo se rompe en las dos incertidumbres críticas.
 
 ## Dos futuros al 2040
+
+> **Actualización (25-oct-2026, 13:20):** el equipo pasó de dos futuros a **tres escenarios**: Colapso, Inercial y Transformación. La versión vigente, con cifras y metas, está en [escenarios-2040.md](escenarios-2040.md). Esta sección se conserva como antecedente: el futuro "indeseable" equivale al **Inercial** y el "deseable" a la **Transformación**.
 
 Los futuros salen de cruzar las dos incertidumbres críticas: quién gobierna la metrópoli (integrada o partida) y cuánta ambición tiene la transición (plena o a medias). Cada rasgo cita la fuerza del inventario de la que sale.
 

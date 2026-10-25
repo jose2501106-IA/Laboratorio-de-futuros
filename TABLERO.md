@@ -1,6 +1,6 @@
 # Tablero de maniobra · Laboratorio de Futuros · Chilangatón
 
-*Actualizado: 25-oct-2026, 12:40 · Entrega: 14:00*
+*Actualizado: 25-oct-2026, 13:25 · Entrega: 14:00*
 
 Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto Chilangathon. **Antes de subir algo al repo, cada chat lee este tablero.**
 
@@ -10,11 +10,14 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | # | Archivo | Para qué sirve | Estado |
 | --- | --- | --- | --- |
-| 0 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | **La rúbrica del jurado** y cómo vamos en cada criterio | ✅ nuevo: léelo primero |
+| 0 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | **La rúbrica del jurado** y cómo vamos en cada criterio | ✅ léelo primero |
+| 0b | [CLAUDE.md](CLAUDE.md) | **Todo el contexto** para cualquier chat o para Claude Code: reglas, IDs, metas, cifras y la arquitectura de Trama | ✅ nuevo |
+| 0c | [PROPUESTA.md](PROPUESTA.md) | **La propuesta: Trama · la red que cuida tu tiempo**, mapeada a la rúbrica | ✅ nuevo |
+| 0d | [app/](app/) y [datos/sinteticos/](datos/sinteticos/) | Prototipo de Trama y datos **SINTÉTICOS** calibrados | ✅ nuevo |
 | 1 | [README.md](README.md) | Puerta de entrada: tesis y hallazgos | ✅ |
 | 2 | [senales-tendencias-fuerzas.md](senales-tendencias-fuerzas.md) | Guía fácil: fuerzas, tendencias y señales | ✅ IDs unificados, con salud (SD10) |
 | 3 | [retrospectiva-2006-2026.md](retrospectiva-2006-2026.md) | Línea del tiempo 2006–2026 y escenario inercial con aritmética | ✅ unida a `main` |
-| 4 | [escenarios-2040.md](escenarios-2040.md) | Tres escenarios: Colapso, Inercial y Transformación | ✅ nuevo |
+| 4 | [escenarios-2040.md](escenarios-2040.md) | Tres escenarios (Colapso, Inercial y Transformación) y **las 11 metas** | ✅ con metas |
 | 5 | [investigacion.md](investigacion.md) | Investigación completa: 34 fuerzas con fuente, matriz y ruta | ✅ con correcciones de la retrospectiva |
 | 6 | [pitch.md](pitch.md) | Guion de unos cuatro minutos y preguntas del jurado | ✅ alineado con el deck de 13 láminas |
 | 7 | [img/](img/) | Matriz, cruce y ruta | ✅ |
@@ -27,7 +30,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | Chat | Qué hace | Rama | Estado | Siguiente paso |
 | --- | --- | --- | --- | --- |
-| **Gerente de maniobra** (este) | Integra todo, escenarios, deck y tablero | `main` | Activo | Revisar ramas nuevas y unirlas |
+| **Gerente de maniobra** (este) | Integra todo: escenarios, metas, propuesta Trama, CLAUDE.md, prototipo, datos sintéticos, deck y tablero | `main` | Activo | Subir el prototipo y el deck con la propuesta |
 | **Estudio de futuros 2006–2040** | Línea del tiempo y escenario inercial | `claude/retrospectiva-2006-2026` | ✅ Unida a `main` | Revisar las cifras de colapso y transformación |
 | **Análisis sistémico** | Estructura M1–M9, diccionario de señales de CENTRO y póster | Local, sin subir | ⏸️ Espera repo privado | Subir a su rama cuando el repo sea privado |
 | **Análisis de transporte** | Salud y estrés en el traslado | — | ✅ Integrado en la guía (SD10) | Buscar fuente sólida para F9 |
@@ -54,7 +57,10 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | Pendiente | Dueño | Urgencia |
 | --- | --- | --- |
-| **Decidir la propuesta** (hay una candidata en CRITERIOS-EVALUACION.md); sin ella los criterios 1, 3 y 4 quedan cojos | Equipo | 🔴 Ya |
+| ~~Decidir la propuesta~~ → **Trama**, en [PROPUESTA.md](PROPUESTA.md) | Equipo | ✅ 13:05 |
+| Abrir el prototipo y ensayar el "Recorrido" de 30 segundos para el pitch | Equipo | 🔴 Antes de las 14:00 |
+| Si un chat tiene su propio CLAUDE.md, moverlo a su carpeta (por ejemplo `sistema/CLAUDE.md`): en la raíz solo va uno | Chat Análisis sistémico | 🟡 |
+| Cambiar los datos sintéticos por datos reales (encuesta del piloto) | Equipo, después del evento | ⚪ |
 | Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility) | José | 🔴 Ya |
 | Poner el nombre del equipo en la portada y el cierre del deck | Equipo | 🔴 Antes de las 14:00 |
 | Compartir el documento y el deck si hay que entregarlos | José | 🔴 Antes de las 14:00 |
@@ -70,7 +76,10 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 > Soy el gerente de maniobra. Tu retrospectiva ya está en `main`. Apliqué tus correcciones del cruce con investigacion.md (A4, S2, P1, E4, S3, E7, P5 y E5). Lee `TABLERO.md` y `escenarios-2040.md`. Tu siguiente tarea: revisa las cifras de los escenarios de colapso y transformación con la misma aritmética que usaste para el inercial. Sube los cambios a tu rama `claude/retrospectiva-2006-2026`, rebasada sobre `main`, y avísame. No toques `main`.
 
 **Al chat "Análisis sistémico futuros CDMX":**
-> Soy el gerente de maniobra. Lee `TABLERO.md` del repo. Cuando José haga privado el repo, sube tu trabajo a la rama `claude/sistema-m1-m9`, no a `main`, después de `git fetch origin && git rebase origin/main`. Usa los IDs de investigacion.md (S, T, E, A, P) y los tres escenarios de `escenarios-2040.md` (colapso, inercial y transformación). Yo reviso y uno a `main`.
+> Soy el gerente de maniobra. Lee `TABLERO.md` y `CLAUDE.md` del repo. Cuando José haga privado el repo, sube tu trabajo a la rama `claude/sistema-m1-m9`, no a `main`, después de `git fetch origin && git rebase origin/main`. Usa los IDs de investigacion.md (S, T, E, A, P) y los tres escenarios de `escenarios-2040.md` (colapso, inercial y transformación). Ojo: ya hay un `CLAUDE.md` en la raíz; si tienes uno propio, guárdalo como `sistema/CLAUDE.md`. Las metas se llaman "Meta 1" a "Meta 11" para no chocar con tus M1–M9. Yo reviso y uno a `main`.
+
+**A cualquier chat que quiera ayudar con el prototipo:**
+> Lee `CLAUDE.md` y `PROPUESTA.md`. El prototipo de Trama está en `app/` y los datos sintéticos en `datos/sinteticos/`. Toma un punto del backlog (§12 de CLAUDE.md), trabaja en tu rama `claude/trama-<tema>` y avísame. Todo número sintético dice SINTÉTICO.
 
 **Al chat "Análisis de transporte público CDMX":**
 > Soy el gerente de maniobra. Tu propuesta ya está integrada en `senales-tendencias-fuerzas.md`: la señal SD10, la sección "El viaje también cuesta salud" y la nota de F9 en revisión. Ojo: los IDs de la guía ahora son F, TD y SD. Si consigues una fuente sólida para F9, súbela a la rama `claude/transporte-salud` y avísame.
