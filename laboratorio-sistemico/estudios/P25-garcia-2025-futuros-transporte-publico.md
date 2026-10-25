@@ -2,7 +2,7 @@
 id: P25
 titulo_original: "Exploring the Futures of Public Transportation in Mexico City"
 autor: "José Rubén García Ramírez"
-programa: "Especialidad en Diseño del Mañana, CENTRO (➕ Ciudad de México; el póster no nombra la ciudad)"
+programa: "Especialidad en Diseño del Mañana, CENTRO (➕ Ciudad de México: el póster nombra la ciudad en el título, pero no dice dónde está CENTRO)"
 logotipo: "«centro.», arriba a la derecha del encabezado"
 formato: "Póster académico, 1 página de 3400 × 4535 pt, en inglés"
 fecha: "2025. El póster no imprime fecha: sale de los metadatos del PDF. Versión con comentarios de revisión: el archivo se creó el 2-jun-2025 a las 21:55:45 (UTC−6), nueve segundos después de la última modificación de una anotación, y puede no ser la versión final (ver §20). Datos de RTP hasta marzo de 2025"
@@ -410,7 +410,7 @@ En el póster manda la imagen. La capa de texto del PDF, y por eso `pdftotext`, 
 
    ➕ [inferencia] **Lectura propia:** el pronóstico de NeuralProphet, que llevaba a RTP a cero hacia 2030, extrapoló un escalón temporal como si fuera una tendencia. El escalón tuvo dos partes: la falta de flota, que se revirtió al reponer autobuses, y el regreso al Metro de la demanda prestada por la Línea 12. Según su pie, el modelo se alimentó con datos de afluencia; nada indica que usara la flota o el presupuesto. Para agosto de 2026 pronosticaba unos 5.5 millones (lectura ➕) e INEGI registró 8.7 millones [M1: 3]. Como en los dos meses comparados (diciembre de 2022 y de 2024) la serie del póster quedó por encima de la de INEGI, el error medido en su propia serie sería aún mayor.
 
-2. **Escenarios de una línea:** salvo el tendencial, que tiene un párrafo propio con su mecanismo y los grupos afectados (§11), no tienen narrativa; ninguno tiene indicadores, impulsores ni año horizonte. En este repositorio se desarrollan al 2040 en [06-escenarios-2040](../06-escenarios-2040/README.md).
+2. **Escenarios de una línea:** salvo el tendencial, que tiene un párrafo propio con su mecanismo y los grupos afectados (§11), no tienen narrativa; cada uno nombra solo una causa (el tendencial, por ejemplo, «public investment and political will remain weak»), y ninguno tiene indicadores ni año horizonte. En este repositorio se desarrollan al 2040 en [06-escenarios-2040](../06-escenarios-2040/README.md).
 3. **Estrategias genéricas:** no dicen quién las ejecuta, con qué presupuesto ni con qué indicador se mide el avance.
 4. **Faltan dimensiones del sistema:**
    - La escala metropolitana: viajes desde el Estado de México.
@@ -460,7 +460,7 @@ Criterio: a diferencia de D25, que no registra las faltas menores de puntuación
 | Parte del póster | Destino en el repositorio |
 |---|---|
 | Entradas, prospectiva y hallazgos | [02-sistema-movilidad](../02-sistema-movilidad/README.md): estado actual de M1, M2, M3, M5 y M6 |
-| Gráfica y pronóstico de RTP (§10) | [M1](../02-sistema-movilidad/dimensiones/M1-transporte-masivo.md#2-estado-actual-2024-2026), §2 y S-M1-02: la caída de 2023-2024 coincidió con un choque de oferta, y la afluencia rebotó al reponer autobuses; aparte, el fin del servicio emergente de la Línea 12 devolvió al Metro una demanda temporal. ➕ [inferencia] El pronóstico extrapoló un escalón temporal como si fuera una tendencia (§18) |
+| Gráfica y pronóstico de RTP (§10) | [M1](../02-sistema-movilidad/dimensiones/M1-transporte-masivo.md#2-estado-actual-2024-2026), §2 y S-M1-02: la caída de 2023-2024 coincidió con un choque de oferta, y la afluencia rebotó al reponer autobuses; aparte, el fin del servicio emergente de la Línea 12 habría devuelto al Metro una demanda temporal [inferencia]. ➕ [inferencia] El pronóstico extrapoló un escalón temporal como si fuera una tendencia (§18) |
 | Señales: motocicletas, transporte informal, escasez de agua | [03-senales](../03-senales/README.md): tablero de señales |
 | Actores clave | [02-sistema-movilidad/actores.md](../02-sistema-movilidad/actores.md) |
 | Cuatro escenarios | [06-escenarios-2040](../06-escenarios-2040/README.md): punto de partida de los escenarios al 2040 |

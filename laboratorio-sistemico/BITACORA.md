@@ -17,9 +17,9 @@
 Terminado cuando:
 
 1. ✅ Todo está en `.md`.
-2. ⏳ D25 y P25 tienen auditoría independiente hasta COMPLETO.
-   - D25: ronda 3 con 32 hallazgos menores, cuyas correcciones están en curso.
-   - P25: ronda 4 en curso.
+2. ⏸️ D25 y P25 tienen auditoría independiente; se cerró por tiempo, con hallazgos menores.
+   - D25: tres rondas. Se corrigieron 31 de los 32 hallazgos de la tercera.
+   - P25: cuatro rondas. En la cuarta quedó corregido el único hallazgo medio y quedan 11 bajos.
 3. ✅ Hay nueve dimensiones con plantilla.
 4. ✅ La síntesis está completa (02 a 09) y alineada con la rúbrica del jurado.
 5. ✅ Las cifras se verificaron con agentes distintos de quien escribió:
@@ -27,7 +27,7 @@ Terminado cuando:
    - una revisión de consistencia interna.
 6. ✅ El repositorio es privado y el trabajo está en una rama.
 
-**Avance:** el usuario pidió adaptar el trabajo al tiempo del hackatón. Por eso no se abren más rondas de auditoría después de las que ya corren. Las correcciones pendientes se suben como un commit adicional a la misma rama.
+**Avance:** el usuario pidió adaptar el trabajo al tiempo del hackatón, así que las auditorías se cerraron con hallazgos menores registrados en `fuentes/AUDITORIA.md`. Todo está en la rama `claude/sistema-m1-m9`.
 
 ## Historial
 
@@ -62,5 +62,4 @@ Terminado cuando:
 
 1. 🧑 Decidir con el gerente si la rama se une a `main` tal como está, en `laboratorio-sistemico/`.
 2. 🧑 Decidir si la retrospectiva del equipo cuenta como la entrega de históricos de la carpeta 01.
-3. Subir las correcciones de la ronda 3 de D25 y el resultado de la ronda 4 de P25 a la misma rama.
-4. Después del evento: cerrar las auditorías hasta COMPLETO y verificar los datos de `main` que llenan huecos de 09.
+3. Después del evento: cerrar las auditorías hasta COMPLETO, con 11 hallazgos bajos en P25 y el opcional de D25. Verificar también los datos de `main` que llenan huecos de 09.

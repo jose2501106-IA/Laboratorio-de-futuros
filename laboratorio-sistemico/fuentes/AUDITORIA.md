@@ -73,7 +73,8 @@ El usuario pidió ajustar el trabajo al tiempo del hackatón (25-oct-2026, 13:28
 | 2 · Independiente | INCOMPLETO | 13 hallazgos: 3 medios y 10 bajos (#21 a #33 del informe); los 13 se corrigieron |
 | 3 · Independiente | INCOMPLETO | 20 hallazgos: 3 medios y 17 bajos. El contenido está completo: los 12 bloques «Texto original» son idénticos a la imagen, los 13 hallazgos de la ronda 2 están resueltos y las lecturas por píxel del corrector se reprodujeron con ±0.03 millones. Los medios: la jerarquía de *Findings*, una inferencia sin marcar sobre la caída de RTP y una atribución a P25 sin respaldo en M2 |
 | Corrección de la ronda 3 | — | El corrector resolvió los 19 hallazgos de sus archivos, cada uno verificado contra el PDF: colores medidos a 400 y 600 ppp, sello y metadatos. Los cruzados (M2, 04, M1, mapa y registro) se corrigieron aparte. La KB-TP (99 registros, de 1991 a 2024) la revisaron por separado dos agentes, los correctores de D25 y de P25 |
-| 4 · Independiente | En curso | Auditor nuevo |
+| 4 · Independiente | INCOMPLETO | 14 hallazgos: 1 medio y 13 bajos. El contenido está completo: el texto original coincide con la imagen en los 38 renglones, la traducción no omite nada, las cifras de la gráfica se volvieron a medir por píxel y los 43 destinos del inventario son válidos. El hallazgo medio era un traslado de demanda dado como hecho; ya lleva [inferencia]. También se corrigieron la frase de que el póster no nombra la ciudad y la de que los escenarios no tienen impulsores |
+| Cierre | — | Por el tiempo del hackatón, no se abre una ronda 5. Quedan 11 hallazgos bajos: encabezados en inglés, colores de la leyenda, criterio de comas, citas de P25 en M1 y M3, y tres de estilo. El detalle está en el informe de la ronda 4 |
 
 Hallazgos de severidad media de la ronda 2:
 - Tres erratas atribuidas al póster que no lo eran. La capa de texto del PDF corta finales de línea, pero la imagen está completa.
