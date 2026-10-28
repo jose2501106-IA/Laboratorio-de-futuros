@@ -1,5 +1,13 @@
 # Movilidad CDMX 2040 · Laboratorio de Futuros · Chilangatón
 
+![Primer lugar · Laboratorio de Futuros · Chilangatón 2026](https://img.shields.io/badge/1.er_lugar-Laboratorio_de_Futuros_%C2%B7_Chilangat%C3%B3n_2026-D1006A?style=for-the-badge)
+
+> 🏆 **Primer lugar del Laboratorio de Futuros · Chilangatón 2026**
+>
+> Equipo **La Chilangonería del futuro** · Ciudad de México, 25 de octubre de 2026 · Organizan SECTEI y SEDECO.
+>
+> Propuesta ganadora: **[Trama · la red que cuida tu tiempo](PROPUESTA.md)** · [Ficha del reconocimiento](RECONOCIMIENTO.md)
+
 Investigación de tendencias y fuerzas motrices de la movilidad en la Ciudad de México y su zona metropolitana. Incluye tres escenarios al 2040 (Colapso, Inercial y Transformación), las once metas que definen la Transformación y una propuesta para llegar a ella: **[Trama · la red que cuida tu tiempo](PROPUESTA.md)**, con su prototipo.
 
 **Pregunta focal:** ¿cómo se moverán las personas en la CDMX y su zona metropolitana en 2040, y quién gana o pierde con ello?
@@ -12,6 +20,7 @@ Investigación de tendencias y fuerzas motrices de la movilidad en la Ciudad de 
 
 | Archivo | Contenido |
 | --- | --- |
+| [RECONOCIMIENTO.md](RECONOCIMIENTO.md) | 🏆 **Primer lugar**: el evento, qué presentamos y cómo lo hicimos |
 | [PROPUESTA.md](PROPUESTA.md) | **La propuesta: Trama**, mapeada a los cinco criterios del jurado |
 | [app/](app/) | **Prototipo de Trama**: Mi día, Red viva y Futuros 2040, sobre la red real y con datos sintéticos marcados. [`app/dist/trama.html`](app/dist/trama.html) abre sin servidor |
 | [datos/sinteticos/](datos/sinteticos/) | Datos **SINTÉTICOS** calibrados contra cifras oficiales, con su generador en `scripts/` |

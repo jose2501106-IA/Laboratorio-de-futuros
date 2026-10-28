@@ -84,7 +84,7 @@ Trama usa los mismos datos abiertos (GTFS y OpenStreetMap) y suma la capa que fa
 
 ## Antes de presentar
 
-- [ ] Poner el nombre del equipo en la portada y el cierre del deck
+- ~~Poner el nombre del equipo en la portada y el cierre del deck~~ → **La Chilangonería del futuro**
 - [ ] Compartir el documento, el deck y el prototipo de Trama desde el menú Compartir, si hay que entregarlos
 - [ ] Tener abierto el prototipo de Trama por si el jurado pide verlo
 - [ ] Ensayar una vez con cronómetro: meta de 4 min 45 s

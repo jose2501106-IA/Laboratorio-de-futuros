@@ -7,6 +7,8 @@ Lee este archivo completo antes de tocar el repo. Aquí está todo lo necesario 
 ## 1. Contexto en 30 segundos
 
 - **Evento:** Chilangatón, Laboratorio de Futuros (SECTEI y SEDECO), en UTOPÍA Elena Poniatowska Amor, Coyoacán. Domingo 25 de octubre de 2026; entrega a las 14:00.
+- **Equipo:** La Chilangonería del futuro.
+- **Resultado:** 🏆 primer lugar del Laboratorio de Futuros. Ficha: [RECONOCIMIENTO.md](RECONOCIMIENTO.md).
 - **Tema:** movilidad.
 - **Pregunta focal:** ¿cómo se moverán las personas en la CDMX y su zona metropolitana en 2040, y quién gana o pierde con ello?
 - **Lente:** cuidados y periferias.
@@ -35,7 +37,7 @@ Todo cambio debe decir **a qué criterio le suma**. Si no le suma a ninguno, no 
 
 ## 3. Reglas que no se rompen
 
-1. **El repo es PÚBLICO.** Nada privado, nada de datos personales, nada de llaves ni tokens. Solo José puede hacerlo privado.
+1. **El repo pasa a PRIVADO** por decisión de José (27-oct-2026); solo él cambia la visibilidad. Aun así: nada de datos personales, llaves ni tokens.
 2. **No se sube el diccionario de señales de CENTRO** (ni textual ni parafraseado en bloque) mientras el repo sea público.
 3. **El proyecto de agua (InnovaFest) no se copia aquí.** Del repo del Mapa solo se usan capas de **movilidad**.
 4. **Cada cifra lleva fuente enlazada.** Se parafrasea; no se copian párrafos. Las proyecciones y supuestos del equipo se marcan con ➕.
@@ -63,6 +65,7 @@ Todo cambio debe decir **a qué criterio le suma**. Si no le suma a ninguno, no 
 
 | Archivo o carpeta | Qué es |
 | --- | --- |
+| [RECONOCIMIENTO.md](RECONOCIMIENTO.md) | 🏆 Primer lugar: el evento, qué presentamos y cómo lo hicimos |
 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | Rúbrica y autoevaluación |
 | [TABLERO.md](TABLERO.md) | Coordinación entre chats: quién hace qué, reglas y pendientes |
 | [README.md](README.md) | Puerta de entrada |

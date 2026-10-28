@@ -1,6 +1,10 @@
 # Tablero de maniobra · Laboratorio de Futuros · Chilangatón
 
-*Actualizado: 25-oct-2026, 13:25 · Entrega: 14:00*
+> **Evento cerrado.** 🏆 **La Chilangonería del futuro** ganó el primer lugar del Laboratorio de Futuros. Ficha: [RECONOCIMIENTO.md](RECONOCIMIENTO.md).
+>
+> Este tablero queda como registro del día. Los pendientes "antes de las 14:00" cerraron con el evento.
+
+*Actualizado: 27-oct-2026 · Entrega: 25-oct-2026, 14:00*
 
 Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto Chilangathon. **Antes de subir algo al repo, cada chat lee este tablero.**
 
@@ -10,6 +14,7 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 
 | # | Archivo | Para qué sirve | Estado |
 | --- | --- | --- | --- |
+| 🏆 | [RECONOCIMIENTO.md](RECONOCIMIENTO.md) | **Primer lugar**: el evento, qué presentamos y cómo lo hicimos | ✅ nuevo |
 | 0 | [CRITERIOS-EVALUACION.md](CRITERIOS-EVALUACION.md) | **La rúbrica del jurado** y cómo vamos en cada criterio | ✅ léelo primero |
 | 0b | [CLAUDE.md](CLAUDE.md) | **Todo el contexto** para cualquier chat o para Claude Code: reglas, IDs, metas, cifras y la arquitectura de Trama | ✅ nuevo |
 | 0c | [PROPUESTA.md](PROPUESTA.md) | **La propuesta: Trama · la red que cuida tu tiempo**, mapeada a la rúbrica | ✅ nuevo |
@@ -62,8 +67,8 @@ Este archivo coordina a todos los chats que trabajan en paralelo en el proyecto 
 | Compartir el **prototipo Trama**, el deck y el documento desde su menú Compartir | José | 🔴 Antes de las 14:00 |
 | Si un chat tiene su propio CLAUDE.md, moverlo a su carpeta (por ejemplo `sistema/CLAUDE.md`): en la raíz solo va uno | Chat Análisis sistémico | 🟡 |
 | Cambiar los datos sintéticos por datos reales (encuesta del piloto) | Equipo, después del evento | ⚪ |
-| Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility). Ojo: si el jurado debe ver el repo, hazlo privado después de la evaluación | José | 🔴 Decidir |
-| Poner el nombre del equipo en la portada y el cierre del deck | Equipo | 🔴 Antes de las 14:00 |
+| Hacer **privado** el repo (GitHub → Settings → Danger Zone → Change visibility). **Decidido el 27-oct: privado** | José | 🔴 Falta hacerlo |
+| ~~Poner el nombre del equipo en la portada y el cierre del deck~~ → **La Chilangonería del futuro** | Equipo | ✅ Nombre definido |
 | Compartir el documento y el deck si hay que entregarlos | José | 🔴 Antes de las 14:00 |
 | Revisar las cifras de colapso y transformación con la misma aritmética de la retrospectiva | Chat Estudio de futuros | 🟡 |
 | Fuente sólida para F9 "el negocio del pasaje" | Chat de transporte | ⚪ |
