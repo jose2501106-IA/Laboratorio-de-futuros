@@ -4,6 +4,10 @@
 
 ![Criterios de evaluación](img/criterios-evaluacion.png)
 
+## Resultado
+
+🏆 **Primer lugar.** El jurado del Laboratorio de Futuros le dio el primer lugar a **La Chilangonería del futuro** con [Trama](PROPUESTA.md). Ficha completa: [RECONOCIMIENTO.md](RECONOCIMIENTO.md).
+
 ## La rúbrica
 
 | # | Criterio | Descripción oficial | En palabras simples |
